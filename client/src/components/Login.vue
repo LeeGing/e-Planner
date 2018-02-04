@@ -24,7 +24,7 @@
             <v-btn class="cyan" @click="login" dark>Login</v-btn>
             <br>
             <div class="error" v-html="error"/>
-            <div v-show="success"> User has been successfully registered.<br> Redirecting to Home Page </div>
+            <div v-show="success"> Login Successful</div>
           </div>
         </div>
       </v-flex>
@@ -51,11 +51,13 @@ export default {
       // try catch to catch possible errors
       // if AuthenticationService endpoint returns something other than 200, we will catch that error
       try {
+        // we track the response that is returned from the server
         const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
         // this is going to call the stores setToken method in actions, which will call mutations setToken, which will update our state to token
+        // we set user and set token based on the response we receive from the server
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
