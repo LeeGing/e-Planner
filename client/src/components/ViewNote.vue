@@ -1,31 +1,26 @@
 <template>
   <div>
-  <div>
     <v-layout column>
       <v-flex xs6 offset-xs3>
-        <panel title="Register">
+        <panel title="VIEW NOTE ID">
           <div class="pl-4 pr-4 pt-2 pb-2">
             <v-text-field class="border-b1"
-              required
-              :rules="[required]"
               label="Enter Email"
               v-model="email"
             ></v-text-field>
             <br>
             <v-text-field
-              required
-              :rules="[required]"
               label="Enter Password"
               type="password"
               v-model="password"
             ></v-text-field>
             <br>
-            <v-btn class="cyan" @click="register" dark>Register</v-btn>
+            <v-btn class="cyan" @click="login" dark>Login</v-btn>
             <br>
             <div class="error" v-html="error"/>
-            <div v-show="success"> User has been successfully registered.<br> Redirecting to Home Page </div>
+            <div v-show="success"> Login Successful</div>
           </div>
-        </panel>
+      </panel>
       </v-flex>
     </v-layout>
   </div>
@@ -44,21 +39,21 @@ export default {
       password: '',
       // we need to define error in ordter to use it on line 36
       error: null,
-      success: false,
-      required: (value) => !!value || 'REQUIRED'
+      success: false
     }
   },
   methods: {
-    async register () {
+    async login () {
       // try catch to catch possible errors
       // if AuthenticationService endpoint returns something other than 200, we will catch that error
       try {
-        // set token and set user based on whatever is returned at the register endpoint
-        const response = await AuthenticationService.register({
+        // we track the response that is returned from the server
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
         // this is going to call the stores setToken method in actions, which will call mutations setToken, which will update our state to token
+        // we set user and set token based on the response we receive from the server
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
@@ -67,11 +62,6 @@ export default {
       }
       // if at this point, this.error is still null, meaning there was no error, this.sucess will become true, allowing for line 10 to show.
       if (this.error === null) { this.success = true }
-      if (this.success === true) {
-        window.setTimeout(function () {
-          window.location.href = '/#/'
-        }, 5000)
-      }
     }
   },
   components: {

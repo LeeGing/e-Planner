@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Planner from '@/components/Planner'
+import CreateNotes from '@/components/CreateNotes'
+import ViewNote from '@/components/ViewNote'
 
 Vue.use(Router)
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/planner',
       name: 'planner',
       component: Planner
+    },
+    {
+      path: '/planner/create',
+      name: 'planner-create',
+      component: CreateNotes
+    },
+    {
+      path: '/planner/:noteId',
+      name: 'note',
+      component: ViewNote
     }
   ]
 })
