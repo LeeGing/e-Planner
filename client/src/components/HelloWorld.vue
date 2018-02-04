@@ -1,0 +1,49 @@
+<template>
+  <div id="root">
+    <navibar></navibar>
+    <h1> Welcome to e-Planner </h1>
+  </div>
+</template>
+
+
+
+
+<script>
+export default {
+  name: 'hello',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
+}
+</script>
+
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+
+
+.bg-info {
+  background-color:black!important;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+</style>
