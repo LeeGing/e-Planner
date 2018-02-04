@@ -1,18 +1,25 @@
 <template>
   <div>
+  <div>
     <navibar></navibar>
     <div class="register-form">
       <h1>Register</h1>
       <!-- v-model : when vue runs, take the input and find data/property called email and bind it -->
+      <br>
       <input type="email" name="email" placeholder="E-Mail" v-model="email"/>
+      <br>
       <br>
       <input type="password" name="password" placeholder="Password" v-model="password"/>
       <br>
-      <div class="error" v-html="error"/>
-      <div v-show="success"> User has been successfully registered. </div>
+      <br>
       <button @click="register">Register</button>
+      <br>
+      <br>
+      <div class="error" v-html="error"/>
+      <div v-show="success"> User has been successfully registered.<br> Redirecting to Home Page </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -43,6 +50,11 @@ export default {
       }
       // if at this point, this.error is still null, meaning there was no error, this.sucess will become true, allowing for line 10 to show.
       if (this.error === null) { this.success = true }
+      if (this.success === true) {
+        window.setTimeout(function () {
+          window.location.href = '/#/'
+        }, 5000)
+      }
     }
   }
 }
