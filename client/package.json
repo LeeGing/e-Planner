@@ -15,7 +15,8 @@
     "bootstrap": "^4.0.0",
     "bootstrap-vue": "^2.0.0-rc.1",
     "vue": "^2.4.2",
-    "vue-router": "^2.7.0"
+    "vue-router": "^2.7.0",
+    "vuetify": "^0.17.7"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -6,8 +6,12 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(BootstrapVue)
+
+Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
