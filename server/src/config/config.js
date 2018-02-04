@@ -5,7 +5,6 @@ module.exports = {
 	port: 8000,
 	// sequelizer configuration
 	db: {
-
 		database: process.env.DB_NAME || 'tabtracker',
 		user: process.env.DB_USER || 'tabtracker',
 		password: process.env.DB_PASS || 'tabtracker',
@@ -14,6 +13,11 @@ module.exports = {
 			host: process.env.HOST || 'localhost',
 			storage: './tabtracker.sqlite'
 		}
+	},
+	authentication: {
+		// this signs the jwt token by passing it a secret string which one the server knows, 
+		// used to determine if the jwt token is valid or not based on the secret
+		jwtSecret: process.env.JWT_SECRET || 'secret'
 	}
 }
  

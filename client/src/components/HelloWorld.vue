@@ -1,11 +1,8 @@
 <template>
   <div id="root">
-    <navibar></navibar>
     <h1> Welcome to e-Planner </h1>
   </div>
 </template>
-
-
 
 
 <script>

@@ -6,7 +6,7 @@
         <div class="white elevation-2">
           <!-- vuetify allows us to use dark, giving us white text -->
           <v-toolbar flat dense class="cyan" dark>
-            <v-toolbar-title>Register</v-toolbar-title>
+            <v-toolbar-title>Login</v-toolbar-title>
           </v-toolbar>
           <br>
           <div class="pl-4 pr-4 pt-2 pb-2">
@@ -21,7 +21,7 @@
               v-model="password"
             ></v-text-field>
             <br>
-            <v-btn class="cyan" @click="register" dark>Register</v-btn>
+            <v-btn class="cyan" @click="login" dark>Login</v-btn>
             <br>
             <div class="error" v-html="error"/>
             <div v-show="success"> User has been successfully registered.<br> Redirecting to Home Page </div>
@@ -47,12 +47,11 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       // try catch to catch possible errors
       // if AuthenticationService endpoint returns something other than 200, we will catch that error
       try {
-        // set token and set user based on whatever is returned at the register endpoint
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
@@ -65,11 +64,6 @@ export default {
       }
       // if at this point, this.error is still null, meaning there was no error, this.sucess will become true, allowing for line 10 to show.
       if (this.error === null) { this.success = true }
-      if (this.success === true) {
-        window.setTimeout(function () {
-          window.location.href = '/#/'
-        }, 5000)
-      }
     }
   }
 }

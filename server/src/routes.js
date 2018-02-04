@@ -8,7 +8,10 @@ module.exports = (app) => {
 	// bringing us to AuthenticationController.register.
 	app.post('/register', 
 		AuthenticationControllerPolicy.register, 
-		AuthenticationController.register)
+		AuthenticationController.register),
+	// app.post(/login) calls the authenticaltioncontroller's login method
+	app.post('/login', 
+		AuthenticationController.login)
 }
 
 // Line 3 replaced this by simplyfing it and using the AuthenticationController to declare endpoints
