@@ -2,6 +2,8 @@ const AuthenticationController = require ('./controllers/AuthenticationControlle
 
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 
+const NotesController = require('./controllers/NotesController')
+
 module.exports = (app) => {
 	// get request to a /status end point
 	// when we hit this endpoint, we will then go to AuthenticationControllerPolicy.register, it will hit next() and it will go to the next like here
@@ -9,9 +11,16 @@ module.exports = (app) => {
 	app.post('/register', 
 		AuthenticationControllerPolicy.register, 
 		AuthenticationController.register),
+
 	// app.post(/login) calls the authenticaltioncontroller's login method
 	app.post('/login', 
-		AuthenticationController.login)
+		AuthenticationController.login),
+
+	app.get('/notes', 
+		NotesController.index),
+
+	app.post('/notes', 
+		NotesController.post)
 }
 
 // Line 3 replaced this by simplyfing it and using the AuthenticationController to declare endpoints

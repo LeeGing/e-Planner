@@ -1,14 +1,8 @@
 <template>
   <div>
-  <div>
     <v-layout column>
       <v-flex xs6 offset-xs3>
-        <div class="white elevation-2">
-          <!-- vuetify allows us to use dark, giving us white text -->
-          <v-toolbar flat dense class="cyan" dark>
-            <v-toolbar-title>Login</v-toolbar-title>
-          </v-toolbar>
-          <br>
+        <panel title="Login">
           <div class="pl-4 pr-4 pt-2 pb-2">
             <v-text-field class="border-b1"
               label="Enter Email"
@@ -26,7 +20,7 @@
             <div class="error" v-html="error"/>
             <div v-show="success"> Login Successful</div>
           </div>
-        </div>
+      </panel>
       </v-flex>
     </v-layout>
   </div>
@@ -35,6 +29,8 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
+
 export default {
   name: 'Registration',
   data () {
@@ -67,6 +63,9 @@ export default {
       // if at this point, this.error is still null, meaning there was no error, this.sucess will become true, allowing for line 10 to show.
       if (this.error === null) { this.success = true }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>

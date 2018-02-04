@@ -3,12 +3,7 @@
   <div>
     <v-layout column>
       <v-flex xs6 offset-xs3>
-        <div class="white elevation-2">
-          <!-- vuetify allows us to use dark, giving us white text -->
-          <v-toolbar flat dense class="cyan" dark>
-            <v-toolbar-title>Register</v-toolbar-title>
-          </v-toolbar>
-          <br>
+        <panel title="Register">
           <div class="pl-4 pr-4 pt-2 pb-2">
             <v-text-field class="border-b1"
               label="Enter Email"
@@ -26,7 +21,7 @@
             <div class="error" v-html="error"/>
             <div v-show="success"> User has been successfully registered.<br> Redirecting to Home Page </div>
           </div>
-        </div>
+        </panel>
       </v-flex>
     </v-layout>
   </div>
@@ -35,6 +30,8 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
+
 export default {
   name: 'Registration',
   data () {
@@ -71,6 +68,9 @@ export default {
         }, 5000)
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>

@@ -8,7 +8,7 @@
           <b-navbar-nav>
             <!-- <b-nav-item href="#">Link</b-nav-item> -->
             <v-toolbar-items>
-            <v-btn flat dark>
+            <v-btn flat dark @click="navigateTo({name: 'planner'})">
               Planner
             </v-btn>
           </v-toolbar-items>
