@@ -1,9 +1,9 @@
 <template>
-  <div id="root" class="margin-a">
+  <div id="root" class="margin-a main">
     <v-layout class='center'>
       <v-flex xs8 class='min-w20'>
         <div v-for="note in notes">
-         <panel :title="note.title" class="margin-b20 margin-r20">
+         <panel :title="note.title" class="mb-4">
               <h1>{{note.title}}</h1>
               <p>{{note.description}}</p>
               <h6>{{note.duedate}}</h6>
@@ -12,11 +12,9 @@
           </div>
       </v-flex>
       <v-flex xs4>
-         <panel title="OPERATIONS" class="side-bar margin-l30">
-          <div>
-          <v-btn @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
-         </div>
-          </panel>
+        <panel title="OPERATIONS" class="side-bar ml-5">
+          <v-btn class='add-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
+        </panel>
       </v-flex>
     </v-layout>
 </div>
@@ -50,6 +48,16 @@ export default {
 
 
 <style scoped>
+.operations {
+  min-width:30%;
+}
+.add-button {
+      font-size:0.875em;
+      display:block;
+      left:-8px;
+      margin-top:35px;
+      width:100%;
+}
 .min-w20 {
   min-width:20em;
 }
@@ -78,6 +86,8 @@ export default {
 }
 .side-bar {
   position:fixed;
+  min-width:15%;
   width:22%;
+  height:242px;
 }
 </style>

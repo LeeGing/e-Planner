@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Planner from '@/components/Planner'
 import CreateNotes from '@/components/CreateNotes'
 import ViewNote from '@/components/ViewNote'
+import EditNote from '@/components/EditNote'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/planner/:noteId',
       name: 'note',
       component: ViewNote
+    },
+    {
+      path: '/planner/:noteId/edit',
+      name: 'planner-edit',
+      component: EditNote
     }
   ]
 })

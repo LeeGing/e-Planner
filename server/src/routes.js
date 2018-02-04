@@ -20,7 +20,13 @@ module.exports = (app) => {
 		NotesController.index),
 
 	app.post('/notes', 
-		NotesController.post)
+		NotesController.post),
+
+	app.get('/notes/:noteId',
+		NotesController.show),
+
+	app.put('/notes/:noteId',
+		NotesController.put)
 }
 
 // Line 3 replaced this by simplyfing it and using the AuthenticationController to declare endpoints

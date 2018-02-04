@@ -1,7 +1,7 @@
 <template>
   <div>
   <div>
-    <v-layout column>
+    <v-layout class='center'>
       <v-flex xs6 offset-xs3>
         <panel title="Register">
           <div class="pl-4 pr-4 pt-2 pb-2">
@@ -55,7 +55,7 @@ export default {
       try {
         // set token and set user based on whatever is returned at the register endpoint
         const response = await AuthenticationService.register({
-          email: this.email,
+          email: this.email.toLowerCase(),
           password: this.password
         })
         // this is going to call the stores setToken method in actions, which will call mutations setToken, which will update our state to token
@@ -82,6 +82,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30em;
+    width: 80%;
+    padding: 10px;
+}
   .error {
     color:red;
   }

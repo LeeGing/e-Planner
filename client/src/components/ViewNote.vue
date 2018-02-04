@@ -1,83 +1,106 @@
 <template>
-  <div>
-    <v-layout column>
-      <v-flex xs6 offset-xs3>
-        <panel title="VIEW NOTE ID">
-          <div class="pl-4 pr-4 pt-2 pb-2">
-            <v-text-field class="border-b1"
-              label="Enter Email"
-              v-model="email"
-            ></v-text-field>
-            <br>
-            <v-text-field
-              label="Enter Password"
-              type="password"
-              v-model="password"
-            ></v-text-field>
-            <br>
-            <v-btn class="cyan" @click="login" dark>Login</v-btn>
-            <br>
-            <div class="error" v-html="error"/>
-            <div v-show="success"> Login Successful</div>
-          </div>
-      </panel>
-      </v-flex>
-    </v-layout>
+  <div class='top-page'> 
+    <div id="root" class="margin-a main">
+      <v-layout class='center'>
+        <v-flex xs8 class='min-w20'>
+           <panel :title="note.title" class="mb-4">
+                <h1>{{note.title}}</h1>
+                <p>{{note.description}}</p>
+                <h6>{{note.duedate}}</h6>
+                <v-btn  class="cyan" @click="navigateTo({name:'planner-edit'})" dark>EDIT</v-btn>
+             </panel>
+        </v-flex>
+        <v-flex xs4>
+          <panel title="OPERATIONS" class="side-bar ml-5">
+            <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
+            <v-btn class='opt-button' @click="navigateTo({name:'planner-edit'})"> EDIT NOTE </v-btn>
+          </panel>
+        </v-flex>
+      </v-layout>
+    </div>
   </div>
-</div>
 </template>
 
+
+
+<div id="root" class="margin-a">
+    
+</div>
+
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
 import Panel from '@/components/Panel'
+import NotesService from '@/services/NotesService'
 
 export default {
-  name: 'Registration',
   data () {
     return {
-      email: '',
-      password: '',
-      // we need to define error in ordter to use it on line 36
-      error: null,
-      success: false
+      note: {}
     }
   },
-  methods: {
-    async login () {
-      // try catch to catch possible errors
-      // if AuthenticationService endpoint returns something other than 200, we will catch that error
-      try {
-        // we track the response that is returned from the server
-        const response = await AuthenticationService.login({
-          email: this.email,
-          password: this.password
-        })
-        // this is going to call the stores setToken method in actions, which will call mutations setToken, which will update our state to token
-        // we set user and set token based on the response we receive from the server
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-      } catch (error) {
-        // error.repsonse.data is what is returned by axios, .error is what we defined
-        this.error = error.response.data.error
-      }
-      // if at this point, this.error is still null, meaning there was no error, this.sucess will become true, allowing for line 10 to show.
-      if (this.error === null) { this.success = true }
-    }
+  async mounted () {
+    // this.store.state.route.params.noteId - vuex store, grabing the state from it,
+    // since the store is synced with the router in main.js, when the router changes in the UI,
+    // this vaulue also changes
+    const noteId = this.$store.state.route.params.noteId
+    this.note = (await NotesService.show(noteId)).data
   },
   components: {
-    Panel
+    Panel,
+    NotesService
+  },
+  methods: {
+    navigateTo (route) {
+      this.$router.push(route)
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .error {
-    color:red;
-  }
-  .border-1{
-    border:1px solid grey;
-    border-radius:3px;
-  }</style>
+.operations {
+  min-width:30%;
+}
+.opt-button {
+      font-size:0.875em;
+      display:block;
+      left:-8px;
+      margin-top:35px;
+      width:100%;
+    }
+.min-w20 {
+  min-width:20em;
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30em;
+    width: 80%;
+    padding: 10px;
+}
+.margin-a {
+  margin:auto;
+}
+.margin-ra {
+  margin-right:2em;
+}
+.margin-la {
+  margin-left:2em;
+}
+.margin-b20 {
+  margin-bottom:20px
+}
+.margin-r20 {
+  margin-right:30px
+}
+.margin-l30{
+  margin-left:30px;
+}
+.side-bar {
+  position:fixed;
+  width:22%;
+  height:242px;
+}
+</style>
 
 <!-- vuex will be used for key store related objects -->

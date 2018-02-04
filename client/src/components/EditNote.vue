@@ -25,7 +25,7 @@
               v-model="note.duedate"
             ></v-text-field>
             <br>
-            <v-btn class="cyan" @click="create" dark>Save</v-btn>
+            <v-btn class="cyan" @click="save" dark>Save</v-btn>
             <br>
             <div class="error"/>
           </div>
@@ -56,14 +56,25 @@ export default {
     Panel
   },
   methods: {
-    async create () {
+    async save () {
+      const noteId = this.$store.state.route.params.noteId
       try {
         // send to backend
-        await NotesService.post(this.note)
-        this.$router.push({name: 'planner'})
+        await NotesService.put(this.note)
+        this.$router.push({name: 'note', params: {noteId: noteId}
+        })
       } catch (err) {
         console.log(err)
       }
+    }
+  },
+  async mounted () {
+    try {
+      // grab the note id, grab the note data
+      const noteId = this.$store.state.route.params.noteId
+      this.note = (await NotesService.show(noteId)).data
+    } catch (err) {
+      console.log(err)
     }
   }
 }
