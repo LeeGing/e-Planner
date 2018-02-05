@@ -47,7 +47,8 @@ export default {
       note: {
         title: null,
         description: null,
-        duedate: null
+        duedate: null,
+        userId: null
       },
       required: (value) => !!value || 'REQUIRED'
     }
@@ -55,12 +56,19 @@ export default {
   components: {
     Panel
   },
+  async mounted () {
+    // do a request to the back end for all the notes
+    // when mounted, this.notes will wait for NotesService.index() to retreive data
+    if (this.$store.state.user !== null) { this.note.userId = this.$store.state.user.id }
+    console.log('note', this.note)
+  },
   methods: {
     async create () {
       try {
         // send to backend
         await NotesService.post(this.note)
-        this.$router.push({name: 'planner'})
+        // this.$router.push({name: 'planner'})
+        console.log(this.note)
       } catch (err) {
         console.log(err)
       }

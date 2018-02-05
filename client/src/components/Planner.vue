@@ -3,16 +3,18 @@
     <v-layout class='center'>
       <v-flex xs8 class='min-w20'>
         <div v-for="note in notes">
-         <panel :title="note.title" class="mb-4">
+          <div v-if="userId === note.userId">
+            <panel :title="note.title" class="mb-4">
               <h1>{{note.title}}</h1>
               <p>{{note.description}}</p>
               <h6>{{note.duedate}}</h6>
               <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>View</v-btn>
-           </panel>
+            </panel>
           </div>
+        </div>
       </v-flex>
       <v-flex xs4>
-        <panel title="OPERATIONS" class="side-bar ml-5">
+        <panel v-if="optBar" title="OPERATIONS" class="side-bar ml-5">
           <v-btn class='add-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
         </panel>
       </v-flex>
@@ -29,13 +31,18 @@ export default {
   },
   data () {
     return {
-      notes: null
+      notes: null,
+      userId: null,
+      optBar: false
     }
   },
   async mounted () {
     // do a request to the back end for all the notes
     // when mounted, this.notes will wait for NotesService.index() to retreive data
     this.notes = (await NotesService.index()).data
+    if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
+    if (this.$store.state.user !== null) { this.optBar = true }
+    console.log('username', this.notes)
   },
   methods: {
     navigateTo (route) {

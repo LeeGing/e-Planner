@@ -7,7 +7,7 @@ module.exports = {
 	db: {
 		database: process.env.DB_NAME || 'tabtracker',
 		user: process.env.DB_USER || 'tabtracker',
-		password: process.env.DB_PASS || 'tabtracker',
+		password: process.env.DB_PASS || 'eplanner',
 		options: {
 			dialect: process.env.DIALECT || 'sqlite',
 			host: process.env.HOST || 'localhost',
