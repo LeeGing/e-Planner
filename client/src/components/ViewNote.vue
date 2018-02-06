@@ -4,16 +4,21 @@
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
            <panel :title="note.title" class="mb-4">
-                <h1>{{note.title}}</h1>
-                <p>{{note.description}}</p>
-                <h6>{{note.duedate}}</h6>
-                <v-btn  class="cyan" @click="navigateTo({name:'planner-edit'})" dark>EDIT</v-btn>
+                <p>Description: {{note.description}}</p>
+                <h6>Due Date: {{note.duedate}}</h6>
+                <div v-if="note.completed !== true"> 
+                  <v-btn  class="cyan" @click="completedNote" dark>Completed</v-btn>
+                </div>
+                 <div v-if="note.completed === true"> 
+                  <p> This task has been completed. </p>
+                </div>
              </panel>
         </v-flex>
         <v-flex xs4>
           <panel title="OPERATIONS" class="side-bar ml-5">
             <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-edit'})"> EDIT NOTE </v-btn>
+            <v-btn class='opt-button' @click="deleteNote"> DELETE NOTE </v-btn>
           </panel>
         </v-flex>
       </v-layout>
@@ -43,6 +48,8 @@ export default {
     // this vaulue also changes
     const noteId = this.$store.state.route.params.noteId
     this.note = (await NotesService.show(noteId)).data
+    console.log(this.note.id)
+    console.log('MONKEY', this.note)
   },
   components: {
     Panel,
@@ -51,6 +58,29 @@ export default {
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    async completedNote () {
+      // const noteId = this.$store.state.route.params.noteId
+      try {
+        // send to backend
+        this.note.completed = true
+        await NotesService.put(this.note)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async deleteNote () {
+      try {
+        console.log(this.note.id)
+        await NotesService.delete(
+          this.note.id
+        )
+        this.$router.push({
+          name: 'planner'
+        })
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }

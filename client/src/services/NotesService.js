@@ -12,5 +12,8 @@ export default {
   },
   put (note) {
     return Api().put(`notes/${note.id}`, note)
+  },
+  delete (noteId) {
+    return Api().delete(`notes/${noteId}`)
   }
 }

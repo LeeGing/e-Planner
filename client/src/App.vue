@@ -30,4 +30,15 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.side-bar {
+  position:fixed;
+  min-width:15%;
+  width:22%;
+  height:242px;
+}
+.center {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+}
 </style>

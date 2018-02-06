@@ -8,7 +8,7 @@
           <b-navbar-nav>
             <!-- <b-nav-item href="#">Link</b-nav-item> -->
             <v-toolbar-items>
-            <v-btn flat dark @click="navigateTo({name: 'planner'})">
+            <v-btn flat class="m-auto" dark @click="navigateTo({name: 'planner'})">
               Planner
             </v-btn>
           </v-toolbar-items>
@@ -62,8 +62,10 @@ export default {
 <style scoped>
 .home:hover{
   color:gray;
-}
+} 
+@media (max-width: 800px) {
   
+}
 </style>
 
 <!-- vuex will be used for key store related objects -->

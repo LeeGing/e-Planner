@@ -26,7 +26,10 @@ module.exports = (app) => {
 		NotesController.show),
 
 	app.put('/notes/:noteId',
-		NotesController.put)
+		NotesController.put),
+
+	app.delete('/notes/:noteId',
+		NotesController.delete)
 }
 
 // Line 3 replaced this by simplyfing it and using the AuthenticationController to declare endpoints

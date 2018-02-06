@@ -61,17 +61,15 @@ export default {
         // this is going to call the stores setToken method in actions, which will call mutations setToken, which will update our state to token
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'planner'
+        })
       } catch (error) {
         // error.repsonse.data is what is returned by axios, .error is what we defined
         this.error = error.response.data.error
       }
       // if at this point, this.error is still null, meaning there was no error, this.sucess will become true, allowing for line 10 to show.
       if (this.error === null) { this.success = true }
-      if (this.success === true) {
-        window.setTimeout(function () {
-          window.location.href = '/#/'
-        }, 5000)
-      }
     }
   },
   components: {

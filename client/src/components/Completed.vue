@@ -1,33 +1,15 @@
 <template>
   <div id="root" class="margin-a main">
-    <div v-if="userId === null">
-      <h1> Welcome to e-Planner </h1>
-      <br>
-      <h6> Please log in or sign up to proceed. </h6>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div v-if="!$store.state.isUserLoggedIn">
-        <v-btn flat light class='cyan'
-         @click="navigateTo({name: 'register'})">
-          Sign Up 
-        </v-btn>
-        <v-btn flat light class='cyan'
-         @click="navigateTo({name: 'login'})">
-          Login 
-        </v-btn>
-      </div>
-    </div>
     <v-layout class='center'>
       <v-flex xs8 class='min-w20'>
-        <h1 v-if="userId !== null"> TASK LIST </h1>
+        <h1> COMPLETED </h1>
         <div v-for="note in notes">
           <div v-if="userId === note.userId">
-            <div v-if="note.completed !== true">
+            <div v-if="note.completed === true">
               <panel :title="note.title" class="mb-4">
-                <p>Description: {{note.description}}</p>
-                <h6>Due Date: {{note.duedate}}</h6>
+                <h1>{{note.title}}</h1>
+                <p>{{note.description}}</p>
+                <h6>{{note.duedate}}</h6>
                 <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>View</v-btn>
               </panel>
             </div>  
@@ -38,6 +20,7 @@
         <panel v-if="optBar" title="OPERATIONS" class="side-bar ml-5">
           <v-btn class='add-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
           <v-btn class='add-button' @click="navigateTo({name:'planner-completed'})"> VIEW COMPLETED </v-btn>
+
         </panel>
       </v-flex>
     </v-layout>
@@ -76,9 +59,6 @@ export default {
 
 
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
 .operations {
   min-width:30%;
 }

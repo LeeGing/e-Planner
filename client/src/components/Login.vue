@@ -56,6 +56,9 @@ export default {
         // we set user and set token based on the response we receive from the server
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'planner'
+        })
       } catch (error) {
         // error.repsonse.data is what is returned by axios, .error is what we defined
         this.error = error.response.data.error

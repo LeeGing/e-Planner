@@ -3,7 +3,7 @@
   <div>
     <v-layout class='center'>
       <v-flex xs6 offset-xs3>
-        <panel title="New Entry">
+        <panel title="NEW TASK">
           <div class="pl-4 pr-4 pt-2 pb-2">
             <v-text-field class="border-b1"
               required
@@ -48,7 +48,8 @@ export default {
         title: null,
         description: null,
         duedate: null,
-        userId: null
+        userId: null,
+        completed: false
       },
       required: (value) => !!value || 'REQUIRED'
     }
@@ -67,7 +68,7 @@ export default {
       try {
         // send to backend
         await NotesService.post(this.note)
-        // this.$router.push({name: 'planner'})
+        this.$router.push({name: 'planner'})
         console.log(this.note)
       } catch (err) {
         console.log(err)

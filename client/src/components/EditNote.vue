@@ -3,7 +3,7 @@
   <div>
     <v-layout class='center'>
       <v-flex xs6 offset-xs3>
-        <panel title="New Entry">
+        <panel title="EDIT TASK">
           <div class="pl-4 pr-4 pt-2 pb-2">
             <v-text-field class="border-b1"
               required
