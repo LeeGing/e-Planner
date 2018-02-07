@@ -42,7 +42,6 @@ export default {
     position:relative;
     width: 80%;
     padding: 10px;
-    height:1000px;
 }
 .opt-button {
       font-size:0.875em;

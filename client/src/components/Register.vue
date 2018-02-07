@@ -21,9 +21,11 @@
             ></v-text-field>
             <br>
             <v-btn class="cyan" @click="register" dark>Register</v-btn>
-            <br>
-            <div class="error" v-html="error"/>
-            <div v-show="success"> User has been successfully registered.<br> Redirecting to Home Page </div>
+            <div v-if="error !== null"> 
+              <br>
+              <div class="error" v-html="error"/>
+            </div>
+            <div v-show="success"> User has been successfully registered. </div>
           </div>
         </panel>
       </v-flex>
@@ -87,12 +89,14 @@ export default {
     width: 80%;
     padding: 10px;
 }
-  .error {
+.error {
     color:red;
-  }
-  .border-1{
-    border:1px solid grey;
-    border-radius:3px;
-  }</style>
+    background-color:white !important;
+}
+.border-1{
+  border:1px solid grey;
+  border-radius:3px;
+}
+</style>
 
 <!-- vuex will be used for key store related objects -->

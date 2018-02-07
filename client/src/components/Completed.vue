@@ -56,9 +56,6 @@ export default {
 </script>
 
 <style scoped>
-div {
-  margin:0;
-}
 .operations {
   min-width:30%;
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="root">
-    <div class="transbox top min-wid">
+    <div class="transbox min-wid">
       <b-jumbotron class="jumbotron">
       <h1 class="strokeme title"> e-Planner </h1>
       <p class="strokeme title-text">
@@ -10,7 +10,8 @@
     </b-jumbotron>
     </div>
     <div class="top margin-t3 min-wid" v-if="!$store.state.isUserLoggedIn">
-      <h3> Register for Free </h3>
+      <h1> Get Started </h1>
+      <p> e-Planner is free to use!</p>
       <v-btn flat light class='cyan'
        @click="navigateTo({name: 'register'})">
         Sign Up 
@@ -21,7 +22,7 @@
       </v-btn>
     </div>
     <div v-else> 
-      <div class='min-wid'>
+      <div class='min-wid margin-t3'>
         <h1> Quick Menu </h1>
         <v-btn flat light class='cyan'
          @click="navigateTo({name: 'planner'})">
@@ -53,14 +54,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .margin-t3 {
-  margin-top:30px;
+  margin-top:6em;
 }
 .min-wid {
   min-width:600px;
-}
-.top {
-  position:relative;
-  top: -100px;
 }
 .bg-white {
   background-color: white;

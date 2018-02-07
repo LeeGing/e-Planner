@@ -15,11 +15,12 @@
             <v-text-field
               label="Enter Description"
               v-model="note.description"
+              required
+              :rules="[required]"
               multi-line
             ></v-text-field>
             <br>
-            <!-- it would be nicer to have 3 input boxes for dd mm yy rather than self typing -->
-             <v-text-field
+            <v-text-field
               required
               :rules="[required]"
               label="Due Date - DD/MM/YY"
@@ -27,6 +28,7 @@
             ></v-text-field>
             <br>
             <v-btn class="cyan" @click="create" dark>Save</v-btn>
+            <p class="error"> <br> {{error}} </p>
             <br>
             <div class="error"/>
           </div>
@@ -52,6 +54,7 @@ export default {
         userId: null,
         completed: false
       },
+      error: null,
       required: (value) => !!value || 'REQUIRED'
     }
   },
@@ -66,6 +69,12 @@ export default {
   },
   methods: {
     async create () {
+      this.error = null
+      const allFieldsFilled = Object.keys(this.note).every(key => !!this.note[key])
+      if (!allFieldsFilled) {
+        this.error = 'Please fill in all the required fields.'
+        return
+      }
       try {
         // send to backend
         await NotesService.post(this.note)
@@ -88,6 +97,10 @@ export default {
     width: 80%;
     padding: 10px;
     height:400px;
+}
+.error {
+    color:red;
+    background-color:white !important;
 }
 </style>
 

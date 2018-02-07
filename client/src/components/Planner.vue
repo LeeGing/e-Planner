@@ -5,9 +5,6 @@
       <br>
       <h6> Please log in or sign up to proceed. </h6>
       <br>
-      <br>
-      <br>
-      <br>
       <div v-if="!$store.state.isUserLoggedIn">
         <v-btn flat light class='cyan'
          @click="navigateTo({name: 'register'})">

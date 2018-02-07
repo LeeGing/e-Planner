@@ -17,6 +17,7 @@
             <br>
             <v-btn class="cyan" @click="login" dark>Login</v-btn>
             <br>
+            <br>
             <div class="error" v-html="error"/>
             <div v-show="success"> Login Successful</div>
           </div>
@@ -82,9 +83,10 @@ export default {
     width: 80%;
     padding: 10px;
 }
-  .error {
+.error {
     color:red;
-  }
+    background-color:white !important;
+}
   .border-1{
     border:1px solid grey;
     border-radius:3px;
