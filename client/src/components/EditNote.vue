@@ -63,6 +63,7 @@ export default {
 
     async save () {
       this.error = null
+      console.log(this.note)
       const allFieldsFilled = Object.keys(this.note).every(key => !!this.note[key])
       if (!allFieldsFilled) {
         this.error = 'Please fill in all the required fields.'

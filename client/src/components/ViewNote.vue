@@ -4,6 +4,7 @@
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
            <panel :title="note.title" class="mb-4">
+                <h3> {{note.title}} </h3>
                 <p>Description: {{note.description}}</p>
                 <h6>Due Date: {{note.duedate}}</h6>
                 <br>
@@ -17,6 +18,7 @@
         </v-flex>
         <v-flex xs4>
           <panel title="TASK" class="side-bar ml-5">
+            <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> PLANNER </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-edit'})"> EDIT TASK </v-btn>
             <v-btn class='opt-button' @click="deleteNote"> DELETE TASK </v-btn>
           </panel>
@@ -82,6 +84,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.opt-button {
+    font-size:0.875em;
+    display:block;
+    left:-8px;
+    margin-top:0px;
+    margin-bottom:10px;
+    width:100%;
+}
 .completed {
   color: green;
 }

@@ -44,10 +44,10 @@ export default {
     padding: 10px;
 }
 .opt-button {
-      font-size:0.875em;
-      display:block;
-      left:-8px;
-      margin-top:20px;
-      width:100%;
+    font-size:0.875em;
+    display:block;
+    left:-8px;
+    margin-top:20px;
+    width:100%;
 }
 </style>

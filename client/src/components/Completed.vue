@@ -6,7 +6,7 @@
           <div v-if="userId === note.userId">
             <div v-if="note.completed === true">
               <panel :title="note.title" class="mb-4">
-                <h1>{{note.title}}</h1>
+                <h3>{{note.title}}</h3>
                 <p>{{note.description}}</p>
                 <h6>{{note.duedate}}</h6>
                 <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
