@@ -1,8 +1,7 @@
 <template>
-  <div id="root" class="margin-a main">
+  <div class="top page">
     <v-layout class='center'>
       <v-flex xs8 class='min-w20'>
-        <h1> COMPLETED </h1>
         <div v-for="note in notes">
           <div v-if="userId === note.userId">
             <div v-if="note.completed === true">
@@ -17,10 +16,9 @@
         </div>
       </v-flex>
       <v-flex xs4>
-        <panel v-if="optBar" title="OPERATIONS" class="side-bar ml-5">
-          <v-btn class='add-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
-          <v-btn class='add-button' @click="navigateTo({name:'planner-completed'})"> VIEW COMPLETED </v-btn>
-
+        <panel v-if="optBar" title="COMPLETED" class="side-bar ml-5">
+          <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
+          <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> VIEW COMPLETED </v-btn>
         </panel>
       </v-flex>
     </v-layout>
@@ -57,8 +55,10 @@ export default {
 
 </script>
 
-
 <style scoped>
+div {
+  margin:0;
+}
 .operations {
   min-width:30%;
 }

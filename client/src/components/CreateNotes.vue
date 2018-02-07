@@ -15,6 +15,7 @@
             <v-text-field
               label="Enter Description"
               v-model="note.description"
+              multi-line
             ></v-text-field>
             <br>
             <!-- it would be nicer to have 3 input boxes for dd mm yy rather than self typing -->
@@ -86,6 +87,7 @@ export default {
     margin-bottom: 30em;
     width: 80%;
     padding: 10px;
+    height:400px;
 }
 </style>
 

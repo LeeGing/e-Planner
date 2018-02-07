@@ -1,6 +1,6 @@
 <template>
-  <div id="root" class="margin-a main">
-    <div v-if="userId === null">
+  <div id="root">
+    <div class="mt-10" v-if="userId === null">
       <h1> Welcome to e-Planner </h1>
       <br>
       <h6> Please log in or sign up to proceed. </h6>
@@ -21,11 +21,11 @@
     </div>
     <v-layout class='center'>
       <v-flex xs8 class='min-w20'>
-        <h1 v-if="userId !== null"> TASK LIST </h1>
         <div v-for="note in notes">
           <div v-if="userId === note.userId">
             <div v-if="note.completed !== true">
               <panel :title="note.title" class="mb-4">
+                <h3>{{note.title}}</h3>
                 <p>Description: {{note.description}}</p>
                 <h6>Due Date: {{note.duedate}}</h6>
                 <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>View</v-btn>
@@ -35,9 +35,9 @@
         </div>
       </v-flex>
       <v-flex xs4>
-        <panel v-if="optBar" title="OPERATIONS" class="side-bar ml-5">
-          <v-btn class='add-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
-          <v-btn class='add-button' @click="navigateTo({name:'planner-completed'})"> VIEW COMPLETED </v-btn>
+        <panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
+          <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
+          <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> VIEW COMPLETED </v-btn>
         </panel>
       </v-flex>
     </v-layout>
@@ -76,24 +76,24 @@ export default {
 
 
 <style scoped>
+.mt-10 {
+  margin-top: 10em;
+}
 h1, h2 {
   font-weight: normal;
 }
 .operations {
-  min-width:30%;
+  min-width:100px;
 }
 .add-button {
       font-size:0.875em;
       display:block;
       left:-8px;
-      margin-top:35px;
       width:100%;
+      min-width:90%;
 }
 .min-w20 {
   min-width:20em;
-}
-.margin-a {
-  margin:auto;
 }
 .margin-ra {
   margin-right:2em;

@@ -1,11 +1,12 @@
 <template>
   <div class='top-page'> 
-    <div id="root" class="margin-a main">
+    <div id="root">
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
            <panel :title="note.title" class="mb-4">
                 <p>Description: {{note.description}}</p>
                 <h6>Due Date: {{note.duedate}}</h6>
+                <br>
                 <div v-if="note.completed !== true"> 
                   <v-btn  class="cyan" @click="completedNote" dark>Completed</v-btn>
                 </div>
@@ -16,7 +17,6 @@
         </v-flex>
         <v-flex xs4>
           <panel title="OPERATIONS" class="side-bar ml-5">
-            <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-edit'})"> EDIT NOTE </v-btn>
             <v-btn class='opt-button' @click="deleteNote"> DELETE NOTE </v-btn>
           </panel>
@@ -25,12 +25,6 @@
     </div>
   </div>
 </template>
-
-
-
-<div id="root" class="margin-a">
-    
-</div>
 
 <script>
 import Panel from '@/components/Panel'
@@ -91,13 +85,6 @@ export default {
 .operations {
   min-width:30%;
 }
-.opt-button {
-      font-size:0.875em;
-      display:block;
-      left:-8px;
-      margin-top:35px;
-      width:100%;
-    }
 .min-w20 {
   min-width:20em;
 }

@@ -6,8 +6,8 @@
         <v-container fluid>
           <router-view></router-view>
         </v-container>
-      </main>
-    </v-app>          
+      </main>    
+    </v-app>   
   </div>
 </template>
 
@@ -37,8 +37,18 @@ export default {
   height:242px;
 }
 .center {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
     width: 80%;
     padding: 10px;
+    height:1000px;
+}
+.opt-button {
+      font-size:0.875em;
+      display:block;
+      left:-8px;
+      margin-top:20px;
+      width:100%;
 }
 </style>
