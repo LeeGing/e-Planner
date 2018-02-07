@@ -5,13 +5,13 @@ module.exports = {
 	port: 8000,
 	// sequelizer configuration
 	db: {
-		database: process.env.DB_NAME || 'tabtracker',
-		user: process.env.DB_USER || 'tabtracker',
+		database: process.env.DB_NAME || 'eplanner',
+		user: process.env.DB_USER || 'eplanner',
 		password: process.env.DB_PASS || 'eplanner',
 		options: {
 			dialect: process.env.DIALECT || 'sqlite',
 			host: process.env.HOST || 'localhost',
-			storage: './tabtracker.sqlite'
+			storage: './eplanner.sqlite'
 		}
 	},
 	authentication: {

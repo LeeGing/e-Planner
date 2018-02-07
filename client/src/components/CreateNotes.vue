@@ -52,7 +52,7 @@ export default {
         description: null,
         duedate: null,
         userId: null,
-        completed: false
+        completed: 'false'
       },
       error: null,
       required: (value) => !!value || 'REQUIRED'

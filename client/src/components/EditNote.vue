@@ -15,6 +15,9 @@
             <v-text-field
               label="Enter Description"
               v-model="note.description"
+              required
+              :rules="[required]"
+              multi-line
             ></v-text-field>
             <br>
             <!-- it would be nicer to have 3 input boxes for dd mm yy rather than self typing -->
@@ -25,9 +28,9 @@
               v-model="note.duedate"
             ></v-text-field>
             <br>
-            <v-btn class="cyan" @click="save" dark>Save</v-btn>
+            <v-btn class="cyan" @click="save" dark>SAVE</v-btn>
+            <p class="error"> <br> {{error}} </p>
             <br>
-            <div class="error"/>
           </div>
         </panel>
       </v-flex>
@@ -49,6 +52,7 @@ export default {
         description: null,
         duedate: null
       },
+      error: null,
       required: (value) => !!value || 'REQUIRED'
     }
   },
@@ -56,7 +60,14 @@ export default {
     Panel
   },
   methods: {
+
     async save () {
+      this.error = null
+      const allFieldsFilled = Object.keys(this.note).every(key => !!this.note[key])
+      if (!allFieldsFilled) {
+        this.error = 'Please fill in all the required fields.'
+        return
+      }
       const noteId = this.$store.state.route.params.noteId
       try {
         // send to backend
@@ -88,6 +99,10 @@ export default {
     margin-bottom: 30em;
     width: 80%;
     padding: 10px;
+}
+.error {
+    color:red;
+    background-color:white !important;
 }
 </style>
 

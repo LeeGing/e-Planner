@@ -8,17 +8,17 @@
                 <h6>Due Date: {{note.duedate}}</h6>
                 <br>
                 <div v-if="note.completed !== true"> 
-                  <v-btn  class="cyan" @click="completedNote" dark>Completed</v-btn>
+                  <v-btn  class="cyan" @click="completedNote" dark>COMPLETED</v-btn>
                 </div>
                  <div v-if="note.completed === true"> 
-                  <p> This task has been completed. </p>
+                  <p class='completed'> This task has been completed. </p>
                 </div>
              </panel>
         </v-flex>
         <v-flex xs4>
-          <panel title="OPERATIONS" class="side-bar ml-5">
-            <v-btn class='opt-button' @click="navigateTo({name:'planner-edit'})"> EDIT NOTE </v-btn>
-            <v-btn class='opt-button' @click="deleteNote"> DELETE NOTE </v-btn>
+          <panel title="TASK" class="side-bar ml-5">
+            <v-btn class='opt-button' @click="navigateTo({name:'planner-edit'})"> EDIT TASK </v-btn>
+            <v-btn class='opt-button' @click="deleteNote"> DELETE TASK </v-btn>
           </panel>
         </v-flex>
       </v-layout>
@@ -82,6 +82,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.completed {
+  color: green;
+}
 .operations {
   min-width:30%;
 }

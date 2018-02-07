@@ -25,7 +25,7 @@
                 <h3>{{note.title}}</h3>
                 <p>Description: {{note.description}}</p>
                 <h6>Due Date: {{note.duedate}}</h6>
-                <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>View</v-btn>
+                <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
               </panel>
             </div>  
           </div>
@@ -33,8 +33,8 @@
       </v-flex>
       <v-flex xs4>
         <panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
-          <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD NOTE </v-btn>
-          <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> VIEW COMPLETED </v-btn>
+          <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
+          <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
         </panel>
       </v-flex>
     </v-layout>

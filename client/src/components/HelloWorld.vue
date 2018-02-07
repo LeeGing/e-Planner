@@ -26,11 +26,11 @@
         <h1> Quick Menu </h1>
         <v-btn flat light class='cyan'
          @click="navigateTo({name: 'planner'})">
-          Planner
+          PLANNER
         </v-btn>
         <v-btn flat light class='cyan'
          @click="navigateTo({name: 'planner-completed'})">
-          View Completed
+          COMPLETED
         </v-btn>
         <v-btn flat light class='cyan'
          @click="navigateTo({name: 'planner-create'})">
