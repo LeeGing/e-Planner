@@ -43,6 +43,7 @@ export default {
     // do a request to the back end for all the notes
     // when mounted, this.notes will wait for NotesService.index() to retreive data
     this.notes = (await NotesService.index()).data
+    this.notes.sort((a, b) => new Date(b.duedate) - new Date(a.duedate))
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
   },

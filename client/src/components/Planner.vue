@@ -16,28 +16,30 @@
         </v-btn>
       </div>
     </div>
-    <v-layout class='center'>
-      <v-flex xs8 class='min-w20'>
-        <div v-for="note in notes">
-          <div v-if="userId === note.userId">
-            <div v-if="note.completed !== true">
-              <panel :title="note.title" class="mb-4">
-                <h3>{{note.title}}</h3>
-                <p>Description: {{note.description}}</p>
-                <h6>Due Date: {{note.duedate}}</h6>
-                <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
-              </panel>
-            </div>  
+    <div v-else>
+      <v-layout class='center'>
+        <v-flex xs8 class='min-w20'>
+          <div v-for="note in notes">
+            <div v-if="userId === note.userId">
+              <div v-if="note.completed !== true">
+                <panel :title="note.title" class="mb-4">
+                  <h3>{{note.title}}</h3>
+                  <p>Description: {{note.description}}</p>
+                  <h6>Due Date: {{note.duedate}}</h6>
+                  <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                </panel>
+              </div>  
+            </div>
           </div>
-        </div>
-      </v-flex>
-      <v-flex xs4>
-        <panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
-          <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
-          <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
-        </panel>
-      </v-flex>
-    </v-layout>
+        </v-flex>
+        <v-flex xs4>
+          <panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
+            <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
+            <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
+          </panel>
+        </v-flex>
+      </v-layout>
+    </div>
 </div>
 </template>
 
@@ -52,15 +54,21 @@ export default {
     return {
       notes: null,
       userId: null,
-      optBar: false
+      optBar: false,
+      arr: []
     }
   },
   async mounted () {
     // do a request to the back end for all the notes
     // when mounted, this.notes will wait for NotesService.index() to retreive data
     this.notes = (await NotesService.index()).data
+    this.notes.sort((a, b) => new Date(a.duedate) - new Date(b.duedate))
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
+    // TIME TESTS
+    this.arr.push(this.notes)
+    console.log(this.notes)
+    // this.sortByDate()
   },
   methods: {
     navigateTo (route) {

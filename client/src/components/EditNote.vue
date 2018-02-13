@@ -24,7 +24,7 @@
              <v-text-field
               required
               :rules="[required]"
-              label="Due Date - DD/MM/YY"
+              label="Due Date - MM/DD/YYYY"
               v-model="note.duedate"
             ></v-text-field>
             <br>
