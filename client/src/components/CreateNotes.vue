@@ -80,8 +80,9 @@ export default {
         await NotesService.post(this.note)
         this.$router.push({name: 'planner'})
         console.log(this.note)
-      } catch (err) {
-        console.log(err)
+      } catch (error) {
+        // error.repsonse.data is what is returned by axios, .error is what we defined
+        this.error = error.response.data.error
       }
     }
   }

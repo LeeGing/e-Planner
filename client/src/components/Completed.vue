@@ -4,7 +4,7 @@
       <v-flex xs8 class='min-w20'>
         <div v-for="note in notes">
           <div v-if="userId === note.userId">
-            <div v-if="note.completed === true">
+            <div v-if="note.completed !== 'not completed'">
               <panel :title="note.title" class="mb-4">
                 <h3>{{note.title}}</h3>
                 <p>{{note.description}}</p>

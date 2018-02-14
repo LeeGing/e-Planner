@@ -8,11 +8,14 @@
                 <p>Description: {{note.description}}</p>
                 <h6>Due Date: {{note.duedate}}</h6>
                 <br>
-                <div v-if="note.completed !== true"> 
+                <div v-if="note.completed === 'not completed'"> 
                   <v-btn  class="cyan" @click="completedNote" dark>COMPLETED</v-btn>
                 </div>
-                 <div v-if="note.completed === true"> 
+                 <div v-if="note.completed !== 'not completed'"> 
                   <p class='completed'> This task has been completed. </p>
+                  <div v-if="completedOn !== 'not completed'"> 
+                    <p>Date Completed: {{completedOn}}</p>
+                  </div>
                 </div>
              </panel>
         </v-flex>
@@ -35,7 +38,8 @@ import NotesService from '@/services/NotesService'
 export default {
   data () {
     return {
-      note: {}
+      note: {},
+      completedOn: 'not completed'
     }
   },
   async mounted () {
@@ -44,7 +48,8 @@ export default {
     // this vaulue also changes
     const noteId = this.$store.state.route.params.noteId
     this.note = (await NotesService.show(noteId)).data
-    console.log(this.note.id)
+    if (this.note.completed !== this.completedOn) { this.completedOn = new Date(this.note.completed) }
+    console.log('completedOnthis', this.completedOn)
     console.log('MONKEY', this.note)
   },
   components: {
@@ -59,8 +64,9 @@ export default {
       // const noteId = this.$store.state.route.params.noteId
       try {
         // send to backend
-        this.note.completed = true
+        this.note.completed = Date.now()
         await NotesService.put(this.note)
+        console.log(this.note)
       } catch (err) {
         console.log(err)
       }

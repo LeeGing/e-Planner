@@ -4,6 +4,8 @@ const AuthenticationControllerPolicy = require('./policies/AuthenticationControl
 
 const NotesController = require('./controllers/NotesController')
 
+const NotesControllerPolicy = require('./policies/NotesControllerPolicy')
+
 module.exports = (app) => {
 	// get request to a /status end point
 	// when we hit this endpoint, we will then go to AuthenticationControllerPolicy.register, it will hit next() and it will go to the next like here
@@ -19,7 +21,8 @@ module.exports = (app) => {
 	app.get('/notes', 
 		NotesController.index),
 
-	app.post('/notes', 
+	app.post('/notes',
+    NotesControllerPolicy.post,
 		NotesController.post),
 
 	app.get('/notes/:noteId',

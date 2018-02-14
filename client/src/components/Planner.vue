@@ -21,11 +21,12 @@
         <v-flex xs8 class='min-w20'>
           <div v-for="note in notes">
             <div v-if="userId === note.userId">
-              <div v-if="note.completed !== true">
+              <div v-if="note.completed === 'not completed'">
                 <panel :title="note.title" class="mb-4">
                   <h3>{{note.title}}</h3>
                   <p>Description: {{note.description}}</p>
                   <h6>Due Date: {{note.duedate}}</h6>
+                  <br>
                   <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                 </panel>
               </div>  
@@ -54,8 +55,7 @@ export default {
     return {
       notes: null,
       userId: null,
-      optBar: false,
-      arr: []
+      optBar: false
     }
   },
   async mounted () {
@@ -65,9 +65,7 @@ export default {
     this.notes.sort((a, b) => new Date(a.duedate) - new Date(b.duedate))
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
-    // TIME TESTS
-    this.arr.push(this.notes)
-    console.log(this.notes)
+    // RENDER TESTS
     // this.sortByDate()
   },
   methods: {
