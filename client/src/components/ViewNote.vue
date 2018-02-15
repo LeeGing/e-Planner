@@ -12,7 +12,7 @@
                   <v-btn  class="cyan" @click="completedNote" dark>COMPLETED</v-btn>
                 </div>
                  <div v-if="note.completed !== 'not completed'"> 
-                  <p class='completed'> This task has been completed. </p>
+                  <p class='completed m-bo'> This task has been completed. </p>
                   <div v-if="completedOn !== 'not completed'"> 
                     <p>Date Completed: {{completedOn}}</p>
                   </div>
@@ -132,10 +132,8 @@ export default {
 .margin-l30{
   margin-left:30px;
 }
-.side-bar {
-  position:fixed;
-  width:22%;
-  height:242px;
+panel {
+  height: 250px;
 }
 </style>
 

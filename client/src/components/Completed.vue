@@ -5,11 +5,11 @@
         <div v-for="note in notes">
           <div v-if="userId === note.userId">
             <div v-if="note.completed !== 'not completed'">
-              <panel :title="note.title" class="mb-4">
+              <panel :title="note.title" class="mb-4 panel">
                 <h3>{{note.title}}</h3>
                 <p>{{note.description}}</p>
                 <h6>{{note.duedate}}</h6>
-                <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                <v-btn class="cyan mtop-1" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
               </panel>
             </div>  
           </div>
@@ -20,6 +20,26 @@
           <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> PLANNER </v-btn>
           <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
         </panel>
+       <div class="side-bar ml-5 mtop-20">
+          <h5><br> COMPLETED <br></h5>
+          <v-avatar
+            class="light-green"
+          >
+          <v-icon dark>{{completed}}</v-icon>
+          </v-avatar>
+          <h5><br> TO DO <br></h5>
+          <v-avatar
+            class="orange"
+          >
+          <v-icon dark>{{tasks}}</v-icon>
+          </v-avatar>
+          <h5><br> OVERDUE <br></h5>
+          <v-avatar
+            class="red"
+          >
+          <v-icon dark>{{overdue}}</v-icon>
+          </v-avatar>
+        </div>
       </v-flex>
     </v-layout>
 </div>
@@ -36,7 +56,11 @@ export default {
     return {
       notes: null,
       userId: null,
-      optBar: false
+      optBar: false,
+      tasks: 0,
+      completed: 0,
+      dateToday: null,
+      overdue: 0
     }
   },
   async mounted () {
@@ -46,10 +70,25 @@ export default {
     this.notes.sort((a, b) => new Date(b.duedate) - new Date(a.duedate))
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
+    this.displayNumbers()
   },
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    displayNumbers () {
+      for (let task of this.notes) {
+        if (task.userId === this.userId) {
+          if (task.completed === 'not completed') {
+            this.tasks += 1
+            if (new Date(task.duedate) < this.dateToday) {
+              this.overdue += 1
+            }
+          } else {
+            this.completed += 1
+          }
+        }
+      }
     }
   }
 }
@@ -57,6 +96,9 @@ export default {
 </script>
 
 <style scoped>
+.mtop-1 {
+  margin-top:1em;
+}
 .operations {
   min-width:30%;
 }
@@ -87,5 +129,8 @@ export default {
 }
 .margin-l30{
   margin-left:30px;
+}
+.panel {
+  height: 250px;
 }
 </style>

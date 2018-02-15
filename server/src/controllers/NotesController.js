@@ -4,9 +4,7 @@ const {Note} = require('../models')
 module.exports = {
 	async index (req, res) {
 			try {
-				const notes = await Note.findAll({
-					limit: 30
-				})
+				const notes = await Note.findAll()
 				res.send(notes)
 			} catch (err) {
 				res.status(403).send({

@@ -34,7 +34,7 @@ export default {
   position:fixed;
   min-width:15%;
   width:22%;
-  height:242px;
+  height:250px;
 }
 .center {
     margin-left: auto;
@@ -49,5 +49,8 @@ export default {
     left:-8px;
     margin-top:20px;
     width:100%;
+}
+.mtop-20 {
+  margin-top: 20em;
 }
 </style>

@@ -20,8 +20,15 @@
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
           <div v-for="note in notes">
+            <div v-show='false' v-if="note.completed === 'not completed'">
+              <div v-if="note.userId === userId">
+              </div>
+            </div>
+          </div>
+          <!-- GOOD SHIT -->
+          <div v-for="note in notes">
             <div v-if="userId === note.userId">
-              <div v-if="note.completed === 'not completed'">
+              <div v-if="note.completed == 'not completed'">
                 <panel :title="note.title" class="mb-4">
                   <h3>{{note.title}}</h3>
                   <p>Description: {{note.description}}</p>
@@ -32,12 +39,35 @@
               </div>  
             </div>
           </div>
+          <div v-if="tasks === 0">
+            <h1 class='mtop-3'> Nothing HERE, add new task! </h1>
+          </div>
         </v-flex>
         <v-flex xs4>
           <panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
             <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
           </panel>
+          <div class="side-bar ml-5 mtop-20">
+            <h5><br> COMPLETED <br></h5>
+            <v-avatar
+              class="light-green"
+            >
+            <v-icon dark>{{completed}}</v-icon>
+            </v-avatar>
+            <h5><br> TO DO <br></h5>
+            <v-avatar
+              class="orange"
+            >
+            <v-icon dark>{{tasks}}</v-icon>
+            </v-avatar>
+            <h5><br> OVERDUE <br></h5>
+            <v-avatar
+              class="red"
+            >
+            <v-icon dark>{{overdue}}</v-icon>
+            </v-avatar>
+          </div>
         </v-flex>
       </v-layout>
     </div>
@@ -55,7 +85,11 @@ export default {
     return {
       notes: null,
       userId: null,
-      optBar: false
+      optBar: false,
+      tasks: 0,
+      completed: 0,
+      dateToday: null,
+      overdue: 0
     }
   },
   async mounted () {
@@ -65,12 +99,31 @@ export default {
     this.notes.sort((a, b) => new Date(a.duedate) - new Date(b.duedate))
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
+    this.dateToday = new Date()
+    console.log('date', this.dateToday)
     // RENDER TESTS
-    // this.sortByDate()
+    console.log('ABC', this.abc)
+    this.displayNumbers()
+    console.log('tasks', this.tasks)
+    console.log('overdue', this.overdue)
   },
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    displayNumbers () {
+      for (let task of this.notes) {
+        if (task.userId === this.userId) {
+          if (task.completed === 'not completed') {
+            this.tasks += 1
+            if (new Date(task.duedate) < this.dateToday) {
+              this.overdue += 1
+            }
+          } else {
+            this.completed += 1
+          }
+        }
+      }
     }
   }
 }
@@ -79,6 +132,12 @@ export default {
 
 
 <style scoped>
+.mtop-20 {
+  margin-top: 20em;
+}
+.mtop-3 {
+  margin-top: 3em;
+}
 .mt-10 {
   margin-top: 10em;
 }
