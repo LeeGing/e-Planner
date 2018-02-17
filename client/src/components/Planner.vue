@@ -19,12 +19,6 @@
     <div v-else>
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
-          <div v-for="note in notes">
-            <div v-show='false' v-if="note.completed === 'not completed'">
-              <div v-if="note.userId === userId">
-              </div>
-            </div>
-          </div>
           <!-- GOOD SHIT -->
           <div v-for="note in notes">
             <div v-if="userId === note.userId">

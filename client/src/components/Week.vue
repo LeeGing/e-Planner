@@ -19,9 +19,208 @@
     <div v-else>
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
+
           <div class="elevation-1 height-500">
             <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">02/16/2018</v-toolbar-title>
+              <v-toolbar-title class="white--text">{{d1}}</v-toolbar-title>
+            </v-toolbar>
+            <v-container grid-list-md text-xs-center style="width:100%"
+            class="outer"
+            id="scroll-target">
+              <v-layout row wrap
+              style="width:100%">
+                <div v-for="note in d1a">
+                  <div v-if="note.duedate == d1">
+                    <div v-if="userId === note.userId">
+                      <div v-if="note.completed === 'not completed'">
+                        <div class="">
+                          <h3>{{note.title}}</h3>
+                          <p>Description: {{note.description}}</p>
+                          <h6>Due Date: {{note.duedate}}</h6>
+                          <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+                
+                <!-- <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div> -->
+
+              </v-layout>
+            </v-container>
+          </div>
+
+          <div class="elevation-1 height-500">
+            <v-toolbar dark color="primary">
+              <v-toolbar-title class="white--text">{{d2}}</v-toolbar-title>
+            </v-toolbar>
+            <v-container grid-list-md text-xs-center style="width:100%"
+            class="outer"
+            id="scroll-target">
+              <v-layout row wrap
+              style="width:100%">
+                
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                
+
+              </v-layout>
+            </v-container>
+          </div>
+
+          <div class="elevation-1 height-500">
+            <v-toolbar dark color="primary">
+              <v-toolbar-title class="white--text">{{d3}}</v-toolbar-title>
+            </v-toolbar>
+            <v-container grid-list-md text-xs-center style="width:100%"
+            class="outer"
+            id="scroll-target">
+              <v-layout row wrap
+              style="width:100%">
+                
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+
+              </v-layout>
+            </v-container>
+          </div>
+
+          <div class="elevation-1 height-500">
+            <v-toolbar dark color="primary">
+              <v-toolbar-title class="white--text">{{d4}}</v-toolbar-title>
+            </v-toolbar>
+            <v-container grid-list-md text-xs-center style="width:100%"
+            class="outer"
+            id="scroll-target">
+              <v-layout row wrap
+              style="width:100%">
+                
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+
+              </v-layout>
+            </v-container>
+          </div>
+
+          <div class="elevation-1 height-500">
+            <v-toolbar dark color="primary">
+              <v-toolbar-title class="white--text">{{d5}}</v-toolbar-title>
+            </v-toolbar>
+            <v-container grid-list-md text-xs-center style="width:100%"
+            class="outer"
+            id="scroll-target">
+              <v-layout row wrap
+              style="width:100%">
+                
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+
+              </v-layout>
+            </v-container>
+          </div>
+
+          <div class="elevation-1 height-500">
+            <v-toolbar dark color="primary">
+              <v-toolbar-title class="white--text">{{d6}}</v-toolbar-title>
+            </v-toolbar>
+            <v-container grid-list-md text-xs-center style="width:100%"
+            class="outer"
+            id="scroll-target">
+              <v-layout row wrap
+              style="width:100%">
+                
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+
+              </v-layout>
+            </v-container>
+          </div>
+
+          <div class="elevation-1 height-500">
+            <v-toolbar dark color="primary">
+              <v-toolbar-title class="white--text">{{d7}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
@@ -100,7 +299,17 @@ export default {
       tasks: 0,
       completed: 0,
       dateToday: null,
-      overdue: 0
+      overdue: 0,
+      // weekly dates
+      d0: '',
+      d1: '',
+      d2: '',
+      d3: '',
+      d4: '',
+      d5: '',
+      d6: '',
+      d7: '',
+      d1a: []
     }
   },
   async mounted () {
@@ -110,13 +319,43 @@ export default {
     this.notes.sort((a, b) => new Date(a.duedate) - new Date(b.duedate))
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
-    this.dateToday = new Date()
-    console.log('date', this.dateToday)
-    // RENDER TESTS
-    console.log('ABC', this.abc)
     this.displayNumbers()
-    console.log('tasks', this.tasks)
-    console.log('overdue', this.overdue)
+    // weekly dates set
+    this.dateToday = new Date()
+    this.dateToday = this.dateToday.setHours(0, 0, 0, 0)
+    this.dateToday = new Date(this.dateToday)
+    this.d0 = this.dateToday
+    this.d1 = new Date()
+    this.d1 = this.d1.setHours(0, 0, 0, 0)
+    this.d1 = new Date(this.d1)
+    this.d2 = this.dateToday.setDate(this.d0.getDate() + 1)
+    this.d3 = this.dateToday.setDate(this.d0.getDate() + 1)
+    this.d4 = this.dateToday.setDate(this.d0.getDate() + 1)
+    this.d5 = this.dateToday.setDate(this.d0.getDate() + 1)
+    this.d6 = this.dateToday.setDate(this.d0.getDate() + 1)
+    this.d7 = this.dateToday.setDate(this.d0.getDate() + 1)
+    this.d2 = new Date(this.d2)
+    this.d3 = new Date(this.d3)
+    this.d4 = new Date(this.d4)
+    this.d5 = new Date(this.d5)
+    this.d6 = new Date(this.d6)
+    this.d7 = new Date(this.d7)
+    this.d1 = (this.d1.getMonth() + 1) + '/' + this.d1.getDate() + '/' + this.d1.getFullYear()
+    this.d2 = (this.d2.getMonth() + 1) + '/' + this.d2.getDate() + '/' + this.d2.getFullYear()
+    this.d3 = (this.d3.getMonth() + 1) + '/' + this.d3.getDate() + '/' + this.d3.getFullYear()
+    this.d4 = (this.d4.getMonth() + 1) + '/' + this.d4.getDate() + '/' + this.d4.getFullYear()
+    this.d5 = (this.d5.getMonth() + 1) + '/' + this.d5.getDate() + '/' + this.d5.getFullYear()
+    this.d6 = (this.d6.getMonth() + 1) + '/' + this.d6.getDate() + '/' + this.d6.getFullYear()
+    this.d7 = (this.d7.getMonth() + 1) + '/' + this.d7.getDate() + '/' + this.d7.getFullYear()
+    console.log('d1', this.d1)
+    console.log('d2', this.d2)
+    console.log('d3', this.d3)
+    console.log('d4', this.d4)
+    console.log('d5', this.d5)
+    console.log('d6', this.d6)
+    console.log('d7', this.d7)
+    this.weekly()
+    console.log(this.d1a)
   },
   methods: {
     navigateTo (route) {
@@ -132,6 +371,17 @@ export default {
             }
           } else {
             this.completed += 1
+          }
+        }
+      }
+    },
+    weekly () {
+      for (let task of this.notes) {
+        if (task.userId === this.userId) {
+          if (task.completed === 'not completed') {
+            if (task.duedate === this.d1) {
+              this.d1a.push(task)
+            }
           }
         }
       }
