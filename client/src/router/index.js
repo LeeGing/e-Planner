@@ -8,6 +8,7 @@ import CreateNotes from '@/components/CreateNotes'
 import ViewNote from '@/components/ViewNote'
 import EditNote from '@/components/EditNote'
 import Completed from '@/components/Completed'
+import Week from '@/components/Week'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/completed',
       name: 'planner-completed',
       component: Completed
+    },
+    {
+      path: '/weekly',
+      name: 'weekly',
+      component: Week
     }
   ]
 })

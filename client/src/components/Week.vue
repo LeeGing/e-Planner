@@ -19,29 +19,39 @@
     <div v-else>
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
-          <div v-for="note in notes">
-            <div v-show='false' v-if="note.completed === 'not completed'">
-              <div v-if="note.userId === userId">
-              </div>
-            </div>
+          <div class="elevation-1 height-500">
+            <v-toolbar dark color="primary">
+              <v-toolbar-title class="white--text">02/16/2018</v-toolbar-title>
+            </v-toolbar>
+            <v-container grid-list-md text-xs-center style="width:100%"
+            class="outer"
+            id="scroll-target">
+              <v-layout row wrap
+              style="width:100%">
+                
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+                 <div class="border-1 mtop-3">
+                 <h1>hello</h1>
+                </div>
+
+              </v-layout>
+            </v-container>
           </div>
-          <!-- GOOD SHIT -->
-          <div v-for="note in notes">
-            <div v-if="userId === note.userId">
-              <div v-if="note.completed == 'not completed'">
-                <panel :title="note.title" class="mb-4">
-                  <h3>{{note.title}}</h3>
-                  <p>Description: {{note.description}}</p>
-                  <h6>Due Date: {{note.duedate}}</h6>
-                  <br>
-                  <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
-                </panel>
-              </div>  
-            </div>
-          </div>
-          <div v-if="tasks === 0">
-            <h1 class='mtop-3'> Nothing HERE, add new task! </h1>
-          </div>
+          
         </v-flex>
         <v-flex xs4>
           <panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
@@ -71,6 +81,7 @@
         </v-flex>
       </v-layout>
     </div>
+
   </div>
 </template>
 
@@ -132,6 +143,33 @@ export default {
 
 
 <style scoped>
+.outer{
+  width:500px;
+  height:70%;
+  white-space: nowrap;
+  position: relative;
+  overflow-x:scroll;
+  overflow-y:hidden;
+}
+
+.outer div{
+  width: 24.5%;
+  background-color:;
+  float: none;
+  height: 90%;
+  margin: 0 0.25%;
+  display: inline-block;
+  zoom: 1;
+}
+.m-auto {
+  margin-top:auto;
+}
+.height-500 {
+  height: 250px;
+}
+.border-1 {
+  border: 1px solid black;
+}
 .mtop-20 {
   margin-top: 20em;
 }
