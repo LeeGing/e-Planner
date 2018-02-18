@@ -297,7 +297,7 @@ export default {
       optBar: false,
       tasks: 0,
       completed: 0,
-      dateToday: null,
+      dateSet: null,
       overdue: 0,
       // weekly dates
       d0: '',
@@ -319,21 +319,20 @@ export default {
     this.notes.sort((a, b) => new Date(a.duedate) - new Date(b.duedate))
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
-    this.displayNumbers()
     // weekly dates set
-    this.dateToday = new Date()
-    this.dateToday = this.dateToday.setHours(0, 0, 0, 0)
-    this.dateToday = new Date(this.dateToday)
-    this.d0 = this.dateToday
+    this.dateSet = new Date()
+    this.dateSet = this.dateSet.setHours(0, 0, 0, 0)
+    this.dateSet = new Date(this.dateSet)
+    this.d0 = this.dateSet
     this.d1 = new Date()
     this.d1 = this.d1.setHours(0, 0, 0, 0)
     this.d1 = new Date(this.d1)
-    this.d2 = this.dateToday.setDate(this.d0.getDate() + 1)
-    this.d3 = this.dateToday.setDate(this.d0.getDate() + 1)
-    this.d4 = this.dateToday.setDate(this.d0.getDate() + 1)
-    this.d5 = this.dateToday.setDate(this.d0.getDate() + 1)
-    this.d6 = this.dateToday.setDate(this.d0.getDate() + 1)
-    this.d7 = this.dateToday.setDate(this.d0.getDate() + 1)
+    this.d2 = this.dateSet.setDate(this.d0.getDate() + 1)
+    this.d3 = this.dateSet.setDate(this.d0.getDate() + 1)
+    this.d4 = this.dateSet.setDate(this.d0.getDate() + 1)
+    this.d5 = this.dateSet.setDate(this.d0.getDate() + 1)
+    this.d6 = this.dateSet.setDate(this.d0.getDate() + 1)
+    this.d7 = this.dateSet.setDate(this.d0.getDate() + 1)
     this.d2 = new Date(this.d2)
     this.d3 = new Date(this.d3)
     this.d4 = new Date(this.d4)
@@ -354,8 +353,11 @@ export default {
     console.log('d5', this.d5)
     console.log('d6', this.d6)
     console.log('d7', this.d7)
+    this.displayNumbers()
     this.weekly()
     console.log(this.d1a)
+    console.log(this.overdue)
+    console.log('this.d1', this.d1)
   },
   methods: {
     navigateTo (route) {
@@ -366,7 +368,7 @@ export default {
         if (task.userId === this.userId) {
           if (task.completed === 'not completed') {
             this.tasks += 1
-            if (new Date(task.duedate) < this.dateToday) {
+            if (new Date(task.duedate) < new Date(this.d1)) {
               this.overdue += 1
             }
           } else {

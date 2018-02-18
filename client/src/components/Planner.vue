@@ -94,12 +94,14 @@ export default {
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
     this.dateToday = new Date()
+    this.dateToday = this.dateToday.setHours(0, 0, 0, 0)
     console.log('date', this.dateToday)
     // RENDER TESTS
     console.log('ABC', this.abc)
     this.displayNumbers()
     console.log('tasks', this.tasks)
     console.log('overdue', this.overdue)
+    console.log('this.dateToday', this.dateToday)
   },
   methods: {
     navigateTo (route) {

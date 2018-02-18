@@ -70,10 +70,15 @@ export default {
   methods: {
     async create () {
       this.error = null
+      this.note.duedate = new Date(this.note.duedate)
+      this.note.duedate = (this.note.duedate.getMonth() + 1) + '/' + this.note.duedate.getDate() + '/' + this.note.duedate.getFullYear()
+      console.log(this.duedate)
       const allFieldsFilled = Object.keys(this.note).every(key => !!this.note[key])
       if (!allFieldsFilled) {
         this.error = 'Please fill in all the required fields.'
         return
+      // attempts of date format
+      // ----------
       }
       try {
         // send to backend
