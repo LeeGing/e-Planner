@@ -22,7 +22,7 @@
 
           <div class="elevation-1 height-500">
             <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">{{d1}}</v-toolbar-title>
+              <v-toolbar-title class="white--text">{{d1}} --- {{d1n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
@@ -33,9 +33,8 @@
                   <div v-if="note.duedate == d1">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="">
+                        <div class="mright-30 mleft-20">
                           <h3>{{note.title}}</h3>
-                          <p>Description: {{note.description}}</p>
                           <h6>Due Date: {{note.duedate}}</h6>
                           <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>
@@ -309,7 +308,8 @@ export default {
       d5: '',
       d6: '',
       d7: '',
-      d1a: []
+      d1a: [],
+      d1n: 0
     }
   },
   async mounted () {
@@ -381,6 +381,7 @@ export default {
           if (task.completed === 'not completed') {
             if (task.duedate === this.d1) {
               this.d1a.push(task)
+              this.d1n += 1
             }
           }
         }
@@ -393,6 +394,12 @@ export default {
 
 
 <style scoped>
+.mleft-20 {
+  margin-left: 20px;
+}
+.mright-30 {
+  margin-right: 30px;
+}
 .outer{
   width:500px;
   height:70%;
@@ -403,11 +410,9 @@ export default {
 }
 
 .outer div{
-  width: 24.5%;
   background-color:;
   float: none;
   height: 90%;
-  margin: 0 0.25%;
   display: inline-block;
   zoom: 1;
 }

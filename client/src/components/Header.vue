@@ -11,6 +11,9 @@
             <v-btn flat class="m-auto" dark @click="navigateTo({name: 'planner'})">
               Planner
             </v-btn>
+            <v-btn flat class="m-auto" dark @click="navigateTo({name: 'weekly'})">
+              Weekly
+            </v-btn>
           </v-toolbar-items>
           </b-navbar-nav>
           <!-- Right aligned nav items -->
