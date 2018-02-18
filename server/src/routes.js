@@ -29,6 +29,7 @@ module.exports = (app) => {
 		NotesController.show),
 
 	app.put('/notes/:noteId',
+    NotesControllerPolicy.put,
 		NotesController.put),
 
 	app.delete('/notes/:noteId',

@@ -31,6 +31,7 @@
             <v-btn class="cyan" @click="save" dark>SAVE</v-btn>
             <p class="error"> <br> {{error}} </p>
             <br>
+            <div class="error"/>
           </div>
         </panel>
       </v-flex>
@@ -63,7 +64,8 @@ export default {
 
     async save () {
       this.error = null
-      console.log(this.note)
+      this.note.duedate = new Date(this.note.duedate)
+      this.note.duedate = (this.note.duedate.getMonth() + 1) + '/' + this.note.duedate.getDate() + '/' + this.note.duedate.getFullYear()
       const allFieldsFilled = Object.keys(this.note).every(key => !!this.note[key])
       if (!allFieldsFilled) {
         this.error = 'Please fill in all the required fields.'
@@ -75,8 +77,8 @@ export default {
         await NotesService.put(this.note)
         this.$router.push({name: 'note', params: {noteId: noteId}
         })
-      } catch (err) {
-        console.log(err)
+      } catch (error) {
+        this.error = error.response.data.error
       }
     }
   },
@@ -85,8 +87,8 @@ export default {
       // grab the note id, grab the note data
       const noteId = this.$store.state.route.params.noteId
       this.note = (await NotesService.show(noteId)).data
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   }
 }

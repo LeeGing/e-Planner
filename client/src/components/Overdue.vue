@@ -1,6 +1,6 @@
 <template>
   <div class="white elevation-2">
-    <v-toolbar flat dense class="cyan" dark>
+    <v-toolbar flat dense class="red" dark>
       <!-- we use title prop here -->
       <v-toolbar-title>{{title}}</v-toolbar-title>
     </v-toolbar>
