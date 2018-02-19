@@ -23,13 +23,24 @@
           <div v-for="note in notes">
             <div v-if="userId === note.userId">
               <div v-if="note.completed == 'not completed'">
-                <panel :title="note.title" class="mb-4">
-                  <h3>{{note.title}}</h3>
-                  <p>Description: {{note.description}}</p>
-                  <h6>Due Date: {{note.duedate}}</h6>
-                  <br>
-                  <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
-                </panel>
+                <div v-if="note.overdue === 'overdueTrue'">
+                  <overdue :title="note.title" class="mb-4">
+                    <h3>{{note.title}}</h3>
+                    <p>Description: {{note.description}}</p>
+                    <h6>Due Date: {{note.duedate}}</h6>
+                    <br>
+                    <v-btn class="red" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                  </overdue>
+                </div>
+                <div v-else>
+                  <panel :title="note.title" class="mb-4">
+                    <h3>{{note.title}}</h3>
+                    <p>Description: {{note.description}}</p>
+                    <h6>Due Date: {{note.duedate}}</h6>
+                    <br>
+                    <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                  </panel>
+                </div>
               </div>  
             </div>
           </div>
@@ -70,15 +81,17 @@
 
 <script>
 import Panel from '@/components/Panel'
-// import Overdue from '@/components/Overdue'
+import Overdue from '@/components/Overdue'
 import NotesService from '@/services/NotesService'
 export default {
   components: {
-    Panel
+    Panel,
+    Overdue
   },
   data () {
     return {
       notes: null,
+      noteId: null,
       userId: null,
       optBar: false,
       tasks: 0,
@@ -103,26 +116,22 @@ export default {
     console.log('tasks', this.tasks)
     console.log('overdue', this.overdue)
     console.log('this.dateToday', this.dateToday)
+    // overdue array of ids
+    console.log(this.overdueArray)
   },
   methods: {
     navigateTo (route) {
       this.$router.push(route)
     },
-    displayNumbers () {
+    async displayNumbers () {
       for (let task of this.notes) {
         if (task.userId === this.userId) {
           if (task.completed === 'not completed') {
             this.tasks += 1
             if (new Date(task.duedate) < this.dateToday) {
               // push the id of the task into an array, if the id === one of the ids in the overdue array, then we render the red panel.
-              // d
-              // d
-              // d
-              // d
-              // d
-              // d
-              // d
-              // d
+              task.overdue = 'overdueTrue'
+              console.log('eyeyeyeye', task)
               this.overdue += 1
             }
           } else {

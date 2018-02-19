@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     duedate: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    completed: DataTypes.BOOLEAN
+    completed: DataTypes.STRING,
+    overdue: DataTypes.STRING
   })
   return Note
 }

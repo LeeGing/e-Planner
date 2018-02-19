@@ -9,7 +9,8 @@ module.exports = {
       ),
       description: Joi.string(),
       userId: Joi.number(),
-      completed: Joi.string()
+      completed: Joi.string(),
+      overdue: Joi.string()
     }
 
     const {error, value} = Joi.validate(req.body, schema)
@@ -46,7 +47,8 @@ module.exports = {
       userId: Joi.number(),
       completed: Joi.string(),
       createdAt: Joi.string(),
-      updatedAt: Joi.string()
+      updatedAt: Joi.string(),
+      overdue: Joi.string()
     }
     
     const {error, value} = Joi.validate(req.body, schema)

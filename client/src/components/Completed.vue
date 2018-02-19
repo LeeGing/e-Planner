@@ -5,21 +5,22 @@
         <div v-for="note in notes">
           <div v-if="userId === note.userId">
             <div v-if="note.completed !== 'not completed'">
-              <panel :title="note.title" class="mb-4 panel">
+              <complete :title="note.title" class="mb-4 panel">
                 <h3>{{note.title}}</h3>
                 <p>{{note.description}}</p>
-                <h6>{{note.duedate}}</h6>
-                <v-btn class="cyan mtop-1" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
-              </panel>
+                <!-- <h6>{{note.duedate}}</h6> -->
+                <h6>Date Completed: {{note.completed}}</h6>
+                <v-btn class="light-green mtop-1" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+              </complete>
             </div>  
           </div>
         </div>
       </v-flex>
       <v-flex xs4>
-        <panel v-if="optBar" title="COMPLETED" class="side-bar ml-5">
+        <complete v-if="optBar" title="COMPLETED" class="side-bar ml-5">
           <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> PLANNER </v-btn>
           <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
-        </panel>
+        </complete>
        <div class="side-bar ml-5 mtop-20">
           <h5><br> COMPLETED <br></h5>
           <v-avatar
@@ -47,10 +48,12 @@
 
 <script>
 import Panel from '@/components/Panel'
+import Complete from '@/components/Complete'
 import NotesService from '@/services/NotesService'
 export default {
   components: {
-    Panel
+    Panel,
+    Complete
   },
   data () {
     return {
@@ -73,6 +76,7 @@ export default {
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
     this.displayNumbers()
+    console.log(this.notes)
   },
   methods: {
     navigateTo (route) {

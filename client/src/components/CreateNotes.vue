@@ -52,7 +52,8 @@ export default {
         description: null,
         duedate: null,
         userId: null,
-        completed: 'not completed'
+        completed: 'not completed',
+        overdue: 'overdueFalse'
       },
       error: null,
       required: (value) => !!value || 'REQUIRED'

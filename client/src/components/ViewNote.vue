@@ -3,19 +3,36 @@
     <div id="root">
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
-           <panel :title="note.title" class="mb-4">
-                <h3> {{note.title}} </h3>
-                <p>Description: {{note.description}}</p>
-                <h6>Due Date: {{note.duedate}}</h6>
-                <br>
-                <div v-if="note.completed === 'not completed'"> 
-                  <v-btn  class="cyan" @click="completedNote" dark>COMPLETED</v-btn>
-                </div>
-                 <div v-if="note.completed !== 'not completed'"> 
-                  <p class='completed m-bo'> This task has been completed. </p>
-                  <p>Date Completed: {{note.completed}}</p>
-                </div>
-             </panel>
+          <div v-if="this.note.overdue === 'overdueTrue'">
+            <overdue :title="note.title" class="mb-4">
+              <h3> {{note.title}} </h3>
+              <p>Description: {{note.description}}</p>
+              <h6>Due Date: {{note.duedate}}</h6>
+              <br>
+              <div v-if="note.completed === 'not completed'"> 
+                <v-btn  class="red" @click="completedNote" dark>COMPLETED</v-btn>
+              </div>
+               <div v-if="note.completed !== 'not completed'"> 
+                <p class='completed m-bo'> This task has been completed. </p>
+                <p>Date Completed: {{note.completed}}</p>
+              </div>
+            </overdue>
+          </div>
+          <div v-else>
+            <panel :title="note.title" class="mb-4">
+              <h3> {{note.title}} </h3>
+              <p>Description: {{note.description}}</p>
+              <h6>Due Date: {{note.duedate}}</h6>
+              <br>
+              <div v-if="note.completed === 'not completed'"> 
+                <v-btn  class="cyan" @click="completedNote" dark>COMPLETED</v-btn>
+              </div>
+               <div v-if="note.completed !== 'not completed'"> 
+                <p class='completed m-bo'> This task has been completed. </p>
+                <p>Date Completed: {{note.completed}}</p>
+              </div>
+            </panel>
+          </div>
         </v-flex>
         <v-flex xs4>
           <panel title="TASK" class="side-bar ml-5">
@@ -31,6 +48,7 @@
 
 <script>
 import Panel from '@/components/Panel'
+import Overdue from '@/components/Overdue'
 import NotesService from '@/services/NotesService'
 
 export default {
@@ -46,10 +64,12 @@ export default {
     const noteId = this.$store.state.route.params.noteId
     this.note = (await NotesService.show(noteId)).data
     console.log('completedOnthis', this.completedOn)
-    console.log('MONKEY', this.note)
+    this.overdueCheck()
+    console.log()
   },
   components: {
     Panel,
+    Overdue,
     NotesService
   },
   methods: {
@@ -82,6 +102,13 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    overdueCheck () {
+      if (new Date(this.note.duedate) < new Date()) {
+        this.note.overdue = 'overdueTrue'
+        console.log('overdue', this.note)
+      }
+      console.log('MONKEY', this.note)
     }
   }
 }
