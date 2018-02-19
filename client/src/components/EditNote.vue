@@ -61,12 +61,12 @@ export default {
     Panel
   },
   methods: {
-
     async save () {
       this.error = null
       this.note.duedate = new Date(this.note.duedate)
       this.note.duedate = (this.note.duedate.getMonth() + 1) + '/' + this.note.duedate.getDate() + '/' + this.note.duedate.getFullYear()
       const allFieldsFilled = Object.keys(this.note).every(key => !!this.note[key])
+      console.log(this.note)
       if (!allFieldsFilled) {
         this.error = 'Please fill in all the required fields.'
         return

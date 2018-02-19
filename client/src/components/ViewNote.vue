@@ -13,9 +13,7 @@
                 </div>
                  <div v-if="note.completed !== 'not completed'"> 
                   <p class='completed m-bo'> This task has been completed. </p>
-                  <div v-if="completedOn !== 'not completed'"> 
-                    <p>Date Completed: {{completedOn}}</p>
-                  </div>
+                  <p>Date Completed: {{note.completed}}</p>
                 </div>
              </panel>
         </v-flex>
@@ -38,8 +36,7 @@ import NotesService from '@/services/NotesService'
 export default {
   data () {
     return {
-      note: {},
-      completedOn: 'not completed'
+      note: {}
     }
   },
   async mounted () {
@@ -48,7 +45,6 @@ export default {
     // this vaulue also changes
     const noteId = this.$store.state.route.params.noteId
     this.note = (await NotesService.show(noteId)).data
-    if (this.note.completed !== this.completedOn) { this.completedOn = new Date(this.note.completed) }
     console.log('completedOnthis', this.completedOn)
     console.log('MONKEY', this.note)
   },
@@ -62,9 +58,12 @@ export default {
     },
     async completedNote () {
       // const noteId = this.$store.state.route.params.noteId
+      console.log(this.note)
+      this.note.completed = Date.now()
+      this.note.completed = new Date(this.note.completed)
+      this.note.completed = (this.note.completed.getMonth() + 1) + '/' + this.note.completed.getDate() + '/' + this.note.completed.getFullYear()
       try {
         // send to backend
-        this.note.completed = Date.now()
         await NotesService.put(this.note)
         console.log(this.note)
       } catch (err) {

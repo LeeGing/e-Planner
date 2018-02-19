@@ -114,6 +114,15 @@ export default {
           if (task.completed === 'not completed') {
             this.tasks += 1
             if (new Date(task.duedate) < this.dateToday) {
+              // push the id of the task into an array, if the id === one of the ids in the overdue array, then we render the red panel.
+              // d
+              // d
+              // d
+              // d
+              // d
+              // d
+              // d
+              // d
               this.overdue += 1
             }
           } else {

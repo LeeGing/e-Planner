@@ -68,6 +68,8 @@ export default {
     // when mounted, this.notes will wait for NotesService.index() to retreive data
     this.notes = (await NotesService.index()).data
     this.notes.sort((a, b) => new Date(b.duedate) - new Date(a.duedate))
+    this.dateToday = new Date()
+    this.dateToday = this.dateToday.setHours(0, 0, 0, 0)
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
     if (this.$store.state.user !== null) { this.optBar = true }
     this.displayNumbers()
