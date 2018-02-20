@@ -7,11 +7,11 @@
       <h6> Please log in or sign up to proceed. </h6>
       <br>
       <div v-if="!$store.state.isUserLoggedIn">
-        <v-btn flat light class='cyan'
+        <v-btn flat light class='blue'
          @click="navigateTo({name: 'register'})">
           Sign Up 
         </v-btn>
-        <v-btn flat light class='cyan'
+        <v-btn flat light class='blue'
          @click="navigateTo({name: 'login'})">
           Login 
         </v-btn>
@@ -21,9 +21,10 @@
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
 
-          <div class="elevation-1 height-500">
+          <div class="elevation-2 mb-4 height-500">
             <v-toolbar dark flat dense color="blue">
-              <v-toolbar-title>{{d1}} --- {{d1n}}</v-toolbar-title>
+              <v-toolbar-title>{{d1}}</v-toolbar-title>
+              <v-toolbar-title class="ml-auto">TASKS: {{d1n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
@@ -34,226 +35,179 @@
                   <div v-if="note.duedate == d1">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="mright-30 mleft-20">
+                        <div class="mright-30 mleft-20 mtop-5">
                           <h3>{{note.title}}</h3>
-                          <h6>Due Date: {{note.duedate}}</h6>
-                          <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                          <h6>Due: {{note.duedate}}</h6>
+                          <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>
                       </div>
                     </div>  
                   </div>
                 </div>
-                
-                <!-- <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div> -->
-
               </v-layout>
             </v-container>
           </div>
-
-          <div class="elevation-1 height-500">
-            <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">{{d2}}</v-toolbar-title>
+          <div class="elevation-2 mb-4 height-500">
+            <v-toolbar dark flat dense color="blue ">
+              <v-toolbar-title>{{d2}}</v-toolbar-title>
+              <v-toolbar-title class="ml-auto">TASKS: {{d2n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
             id="scroll-target">
               <v-layout row wrap
               style="width:100%">
-                
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
+                <div v-for="note in d2a">
+                  <div v-if="note.duedate == d2">
+                    <div v-if="userId === note.userId">
+                      <div v-if="note.completed === 'not completed'">
+                        <div class="mright-30 mleft-20 mtop-5">
+                          <h3>{{note.title}}</h3>
+                          <h6>Due: {{note.duedate}}</h6>
+                          <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
                 </div>
-                
-
               </v-layout>
             </v-container>
           </div>
-
-          <div class="elevation-1 height-500">
-            <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">{{d3}}</v-toolbar-title>
+          <div class="elevation-2 mb-4 height-500">
+            <v-toolbar dark flat dense color="blue ">
+              <v-toolbar-title>{{d3}}</v-toolbar-title>
+              <v-toolbar-title class="ml-auto">TASKS: {{d3n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
             id="scroll-target">
               <v-layout row wrap
               style="width:100%">
-                
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
+                <div v-for="note in d3a">
+                  <div v-if="note.duedate == d3">
+                    <div v-if="userId === note.userId">
+                      <div v-if="note.completed === 'not completed'">
+                        <div class="mright-30 mleft-20 mtop-5">
+                          <h3>{{note.title}}</h3>
+                          <h6>Due: {{note.duedate}}</h6>
+                          <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
                 </div>
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-
               </v-layout>
             </v-container>
           </div>
-
-          <div class="elevation-1 height-500">
-            <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">{{d4}}</v-toolbar-title>
+          <div class="elevation-2 mb-4 height-500">
+            <v-toolbar dark flat dense color="blue ">
+              <v-toolbar-title>{{d4}}</v-toolbar-title>
+              <v-toolbar-title class="ml-auto">TASKS: {{d4n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
             id="scroll-target">
               <v-layout row wrap
               style="width:100%">
-                
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
+                <div v-for="note in d4a">
+                  <div v-if="note.duedate == d4">
+                    <div v-if="userId === note.userId">
+                      <div v-if="note.completed === 'not completed'">
+                        <div class="mright-30 mleft-20 mtop-5">
+                          <h3>{{note.title}}</h3>
+                          <h6>Due: {{note.duedate}}</h6>
+                          <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
                 </div>
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-
               </v-layout>
             </v-container>
           </div>
-
-          <div class="elevation-1 height-500">
-            <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">{{d5}}</v-toolbar-title>
+          <div class="elevation-2 mb-4 height-500">
+            <v-toolbar dark flat dense color="blue ">
+              <v-toolbar-title>{{d5}}</v-toolbar-title>
+              <v-toolbar-title class="ml-auto">TASKS: {{d5n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
             id="scroll-target">
               <v-layout row wrap
               style="width:100%">
-                
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
+                <div v-for="note in d5a">
+                  <div v-if="note.duedate == d5">
+                    <div v-if="userId === note.userId">
+                      <div v-if="note.completed === 'not completed'">
+                        <div class="mright-30 mleft-20 mtop-5">
+                          <h3>{{note.title}}</h3>
+                          <h6>Due: {{note.duedate}}</h6>
+                          <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
                 </div>
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-
               </v-layout>
             </v-container>
           </div>
-
-          <div class="elevation-1 height-500">
-            <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">{{d6}}</v-toolbar-title>
+          <div class="elevation-2 mb-4 height-500">
+            <v-toolbar dark flat dense color="blue ">
+              <v-toolbar-title>{{d6}}</v-toolbar-title>
+              <v-toolbar-title class="ml-auto">TASKS: {{d6n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
             id="scroll-target">
               <v-layout row wrap
               style="width:100%">
-                
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
+                <div v-for="note in d6a">
+                  <div v-if="note.duedate == d6">
+                    <div v-if="userId === note.userId">
+                      <div v-if="note.completed === 'not completed'">
+                        <div class="mright-30 mleft-20 mtop-5">
+                          <h3>{{note.title}}</h3>
+                          <h6>Due: {{note.duedate}}</h6>
+                          <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
                 </div>
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-
               </v-layout>
             </v-container>
           </div>
-
-          <div class="elevation-1 height-500">
-            <v-toolbar dark color="primary">
+          <div class="elevation-2 mb-4 height-500">
+            <v-toolbar dark flat dense color="blue ">
               <v-toolbar-title>{{d7}}</v-toolbar-title>
+              <v-toolbar-title class="ml-auto">TASKS: {{d7n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
             id="scroll-target">
               <v-layout row wrap
               style="width:100%">
-                
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
+                <div v-for="note in d7a">
+                  <div v-if="note.duedate == d7">
+                    <div v-if="userId === note.userId">
+                      <div v-if="note.completed === 'not completed'">
+                        <div class="mright-30 mleft-20 mtop-5">
+                          <h3>{{note.title}}</h3>
+                          <h6>Due: {{note.duedate}}</h6>
+                          <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
                 </div>
-                <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-                 <div class="border-1 mtop-3">
-                 <h1>hello</h1>
-                </div>
-
               </v-layout>
             </v-container>
           </div>
-          
+
+
         </v-flex>
         <v-flex xs4>
-          <week-panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
+          <week-panel v-if="optBar" title="WEEKLY" class="side-bar ml-5">
             <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> TASKS </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
@@ -288,9 +242,10 @@
             </a>
           </div>
         </v-flex>
+
+        </v-flex>
       </v-layout>
     </div>
-
   </div>
 </template>
 
@@ -322,7 +277,19 @@ export default {
       d6: '',
       d7: '',
       d1a: [],
-      d1n: 0
+      d1n: 0,
+      d2a: [],
+      d2n: 0,
+      d3a: [],
+      d3n: 0,
+      d4a: [],
+      d4n: 0,
+      d5a: [],
+      d5n: 0,
+      d6a: [],
+      d6n: 0,
+      d7a: [],
+      d7n: 0
     }
   },
   async mounted () {
@@ -398,6 +365,30 @@ export default {
               this.d1a.push(task)
               this.d1n += 1
             }
+            if (task.duedate === this.d2) {
+              this.d2a.push(task)
+              this.d2n += 1
+            }
+            if (task.duedate === this.d3) {
+              this.d3a.push(task)
+              this.d3n += 1
+            }
+            if (task.duedate === this.d4) {
+              this.d4a.push(task)
+              this.d4n += 1
+            }
+            if (task.duedate === this.d5) {
+              this.d5a.push(task)
+              this.d5n += 1
+            }
+            if (task.duedate === this.d6) {
+              this.d6a.push(task)
+              this.d6n += 1
+            }
+            if (task.duedate === this.d7) {
+              this.d7a.push(task)
+              this.d7n += 1
+            }
           }
         }
       }
@@ -407,6 +398,12 @@ export default {
 </script>
 
 <style scoped>
+.mtop-5 {
+  margin-top:10px;
+}
+.mbot-20 {
+  margin-bottom: 2px;
+}
 a {
   text-decoration: none; 
   color: black; 

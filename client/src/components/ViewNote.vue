@@ -20,17 +20,17 @@
             </overdue-panel>
           </div>
           <div v-else>
-            <panel :title="note.title" class="mb-4">
+            <panel :title="note.title" class="panel-250 mb-4">
               <h3> {{note.title}} </h3>
               <p>Description: {{note.description}}</p>
               <h6>Due Date: {{note.duedate}}</h6>
-              <br>
               <div v-if="note.completed === 'not completed'"> 
+                <br>
                 <v-btn  class="cyan" @click="completedNote" dark>COMPLETED</v-btn>
               </div>
                <div v-if="note.completed !== 'not completed'"> 
-                <p class='completed m-bo'> This task has been completed. </p>
-                <p>Date Completed: {{note.completed}}</p>
+                <br>
+                <p class="completed">Date Completed: {{note.completed}}</p>
               </div>
             </panel>
           </div>
@@ -120,11 +120,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.panel-250 {
+  height: 250px;
+}
 .opt-button {
     font-size:0.875em;
     display:block;
     left:-8px;
-    margin-top:0px;
+    margin-top:10px;
     margin-bottom:10px;
     width:100%;
 }
