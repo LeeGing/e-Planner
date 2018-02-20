@@ -1,45 +1,56 @@
 <template>
-  <div class="top page">
+  <div>
+    <completed-header/>
     <v-layout class='center'>
       <v-flex xs8 class='min-w20'>
         <div v-for="note in notes">
           <div v-if="userId === note.userId">
             <div v-if="note.completed !== 'not completed'">
-              <complete :title="note.title" class="mb-4 panel">
+              <completed-panel :title="note.title" class="mb-4 panel">
                 <h3>{{note.title}}</h3>
                 <p>{{note.description}}</p>
                 <!-- <h6>{{note.duedate}}</h6> -->
                 <h6>Date Completed: {{note.completed}}</h6>
                 <v-btn class="light-green mtop-1" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
-              </complete>
+              </completed-panel>
             </div>  
           </div>
         </div>
       </v-flex>
       <v-flex xs4>
-        <complete v-if="optBar" title="COMPLETED" class="side-bar ml-5">
-          <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> PLANNER </v-btn>
-          <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
-        </complete>
-       <div class="side-bar ml-5 mtop-20">
-          <h5><br> COMPLETED <br></h5>
-          <v-avatar
-            class="light-green"
-          >
-          <v-icon dark>{{completed}}</v-icon>
-          </v-avatar>
-          <h5><br> TO DO <br></h5>
-          <v-avatar
-            class="orange"
-          >
-          <v-icon dark>{{tasks}}</v-icon>
-          </v-avatar>
-          <h5><br> OVERDUE <br></h5>
-          <v-avatar
-            class="red"
-          >
-          <v-icon dark>{{overdue}}</v-icon>
-          </v-avatar>
+        <completed-panel v-if="optBar" title="COMPLETED" class="side-bar ml-5">
+          <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
+          <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> TASKS </v-btn>
+          <v-btn class='opt-button' @click="navigateTo({name:'weekly'})"> WEEKLY </v-btn>
+          <v-btn class='opt-button' @click="navigateTo({name:'overdue'})"> OVERDUE </v-btn>
+        </completed-panel>
+        <div class="side-bar ml-5 mtop-20">
+          <a href='/#/completed'>
+            <h5><br> COMPLETED <br></h5>
+            <v-avatar
+              class="light-green"
+            >
+            <v-icon dark>{{completed}}</v-icon>
+            </v-avatar>
+          </a>
+          <a href='/#/planner'>
+            <h5><br> TO DO <br></h5>
+            <v-avatar
+              class="orange"
+            >
+            <v-icon dark>{{tasks}}</v-icon>
+            </v-avatar>
+          </a>
+          <a href='#/overdue'>
+            <div class="link">
+              <h5><br> OVERDUE <br></h5>
+              <v-avatar
+                class="red"
+              >
+              <v-icon dark>{{overdue}}</v-icon>
+              </v-avatar>
+            </div>
+          </a>
         </div>
       </v-flex>
     </v-layout>
@@ -48,12 +59,14 @@
 
 <script>
 import Panel from '@/components/Panel'
-import Complete from '@/components/Complete'
+import CompletedPanel from '@/components/CompletedPanel'
+import CompletedHeader from '@/components/CompletedHeader'
 import NotesService from '@/services/NotesService'
 export default {
   components: {
     Panel,
-    Complete
+    CompletedPanel,
+    CompletedHeader
   },
   data () {
     return {
@@ -102,6 +115,10 @@ export default {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none; 
+  color: black; 
+}
 .mtop-1 {
   margin-top:1em;
 }

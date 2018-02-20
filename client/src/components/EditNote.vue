@@ -1,6 +1,6 @@
 <template>
   <div>
-  <div>
+    <page-header/>
     <v-layout class='center'>
       <v-flex xs6 offset-xs3>
         <panel title="EDIT TASK">
@@ -43,6 +43,7 @@
 <script>
 import Panel from '@/components/Panel'
 import NotesService from '@/services/NotesService'
+import PageHeader from '@/components/Header.vue'
 
 export default {
   name: 'Registration',
@@ -58,7 +59,8 @@ export default {
     }
   },
   components: {
-    Panel
+    Panel,
+    PageHeader
   },
   methods: {
     async save () {

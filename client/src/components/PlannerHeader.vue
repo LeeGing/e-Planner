@@ -1,23 +1,21 @@
 <template>
   <div>
     <div>
-      <b-navbar toggleable="md" class="mbot-45" type="dark" variant="info">
+      <b-navbar toggleable="md" class="orange mbot-45" type="dark" variant="info">
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
         <b-navbar-brand class="home" href="/#/">e-Planner</b-navbar-brand>
         <b-collapse is-nav id="nav_collapse">
-          <div v-if="userId !== null">
-            <b-navbar-nav>
-              <!-- <b-nav-item href="#">Link</b-nav-item> -->
-              <v-toolbar-items>
-                <v-btn flat class="m-auto" dark @click="navigateTo({name: 'planner'})">
-                  Tasks
-                </v-btn>
-                <v-btn flat class="m-auto" dark @click="navigateTo({name: 'weekly'})">
-                  Weekly
-                </v-btn>
-              </v-toolbar-items>
-            </b-navbar-nav>
-          </div>
+          <b-navbar-nav>
+            <!-- <b-nav-item href="#">Link</b-nav-item> -->
+            <v-toolbar-items>
+            <v-btn flat class="m-auto" dark @click="navigateTo({name: 'planner'})">
+              Tasks
+            </v-btn>
+            <v-btn flat class="m-auto" dark @click="navigateTo({name: 'weekly'})">
+              Weekly
+            </v-btn>
+          </v-toolbar-items>
+          </b-navbar-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <!-- hide the log in and sign up buttons if the user is logged in. -->
@@ -47,14 +45,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-      userId: null
-    }
-  },
-  mounted () {
-    if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
-  },
   methods: {
     navigateTo (route) {
       this.$router.push(route)

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Planner from '@/components/Planner'
@@ -9,6 +9,7 @@ import ViewNote from '@/components/ViewNote'
 import EditNote from '@/components/EditNote'
 import Completed from '@/components/Completed'
 import Week from '@/components/Week'
+import Overdue from '@/components/Overdue'
 
 Vue.use(Router)
 
@@ -17,7 +18,7 @@ export default new Router({
     {
       path: '/',
       name: 'root',
-      component: HelloWorld
+      component: Home
     },
     {
       path: '/register',
@@ -58,6 +59,11 @@ export default new Router({
       path: '/weekly',
       name: 'weekly',
       component: Week
+    },
+    {
+      path: '/overdue',
+      name: 'overdue',
+      component: Overdue
     }
   ]
 })

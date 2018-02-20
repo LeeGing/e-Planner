@@ -1,6 +1,6 @@
 <template>
   <div>
-  <div>
+    <page-header/>
     <v-layout class='center'>
       <v-flex xs6 offset-xs3>
         <panel title="Register">
@@ -37,6 +37,7 @@
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
 import Panel from '@/components/Panel'
+import PageHeader from '@/components/Header.vue'
 
 export default {
   name: 'Registration',
@@ -75,7 +76,8 @@ export default {
     }
   },
   components: {
-    Panel
+    Panel,
+    PageHeader
   }
 }
 </script>

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <v-app>
-      <page-header />
-      <main>
-        <v-container fluid>
+      <!-- <page-header /> -->
+      <!-- <main> -->
+        <!-- <v-container fluid> -->
           <router-view></router-view>
-        </v-container>
-      </main>    
+        <!-- </v-container> -->
+      <!-- </main>     -->
     </v-app>   
   </div>
 </template>
@@ -23,6 +23,9 @@ export default {
 </script>
 
 <style>
+.mbot-45 {
+  margin-bottom: 45px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -46,8 +49,10 @@ export default {
 .opt-button {
     font-size:0.875em;
     display:block;
+    top:-5px;
     left:-8px;
-    margin-top:20px;
+    margin-top:0px;
+    margin-bottom:3px;
     width:100%;
 }
 .mtop-20 {

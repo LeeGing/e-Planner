@@ -1,11 +1,12 @@
 <template>
   <div id="root">
+    <page-header/>
     <div class="transbox min-wid">
       <b-jumbotron class="jumbotron">
       <h1 class="strokeme title"> e-Planner </h1>
       <p class="strokeme title-text">
         <br>
-        A task tracking application helping you to stay organized.
+        A task tracking application helping you stay organized.
       </p>
     </b-jumbotron>
     </div>
@@ -42,7 +43,11 @@
 </template>
 
 <script>
+import PageHeader from '@/components/Header.vue'
 export default {
+  components: {
+    PageHeader
+  },
   methods: {
     navigateTo (route) {
       this.$router.push(route)

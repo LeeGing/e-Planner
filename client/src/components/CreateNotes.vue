@@ -1,6 +1,6 @@
 <template>
   <div>
-  <div>
+    <page-header/>
     <v-layout class='center'>
       <v-flex xs6 offset-xs3>
         <panel title="NEW TASK">
@@ -41,6 +41,7 @@
 
 <script>
 import Panel from '@/components/Panel'
+import PageHeader from '@/components/Header.vue'
 import NotesService from '@/services/NotesService'
 
 export default {
@@ -60,7 +61,8 @@ export default {
     }
   },
   components: {
-    Panel
+    Panel,
+    PageHeader
   },
   async mounted () {
     // do a request to the back end for all the notes

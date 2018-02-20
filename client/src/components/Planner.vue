@@ -1,5 +1,6 @@
 <template>
   <div id="root">
+    <planner-header/>
     <div class="mt-10" v-if="userId === null">
       <h1> Welcome to e-Planner </h1>
       <br>
@@ -24,22 +25,22 @@
             <div v-if="userId === note.userId">
               <div v-if="note.completed == 'not completed'">
                 <div v-if="note.overdue === 'overdueTrue'">
-                  <overdue :title="note.title" class="mb-4">
+                  <overdue-panel :title="note.title" class="mb-4">
                     <h3>{{note.title}}</h3>
                     <p>Description: {{note.description}}</p>
                     <h6>Due Date: {{note.duedate}}</h6>
                     <br>
                     <v-btn class="red" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
-                  </overdue>
+                  </overdue-panel>
                 </div>
                 <div v-else>
-                  <panel :title="note.title" class="mb-4">
+                  <planner-panel :title="note.title" class="mb-4">
                     <h3>{{note.title}}</h3>
                     <p>Description: {{note.description}}</p>
                     <h6>Due Date: {{note.duedate}}</h6>
                     <br>
-                    <v-btn class="cyan" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
-                  </panel>
+                    <v-btn class="orange" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
+                  </planner-panel>
                 </div>
               </div>  
             </div>
@@ -49,29 +50,39 @@
           </div>
         </v-flex>
         <v-flex xs4>
-          <panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
+          <planner-panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
             <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
+            <v-btn class='opt-button' @click="navigateTo({name:'weekly'})"> WEEKLY </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
-          </panel>
+            <v-btn class='opt-button' @click="navigateTo({name:'overdue'})"> OVERDUE </v-btn>
+          </planner-panel>
           <div class="side-bar ml-5 mtop-20">
-            <h5><br> COMPLETED <br></h5>
-            <v-avatar
-              class="light-green"
-            >
-            <v-icon dark>{{completed}}</v-icon>
-            </v-avatar>
-            <h5><br> TO DO <br></h5>
-            <v-avatar
-              class="orange"
-            >
-            <v-icon dark>{{tasks}}</v-icon>
-            </v-avatar>
-            <h5><br> OVERDUE <br></h5>
-            <v-avatar
-              class="red"
-            >
-            <v-icon dark>{{overdue}}</v-icon>
-            </v-avatar>
+            <a href='/#/completed'>
+              <h5><br> COMPLETED <br></h5>
+              <v-avatar
+                class="light-green"
+              >
+              <v-icon dark>{{completed}}</v-icon>
+              </v-avatar>
+            </a>
+            <a href='/#/planner'>
+              <h5><br> TO DO <br></h5>
+              <v-avatar
+                class="orange"
+              >
+              <v-icon dark>{{tasks}}</v-icon>
+              </v-avatar>
+            </a>
+            <a href='#/overdue'>
+              <div class="link">
+                <h5><br> OVERDUE <br></h5>
+                <v-avatar
+                  class="red"
+                >
+                <v-icon dark>{{overdue}}</v-icon>
+                </v-avatar>
+              </div>
+            </a>
           </div>
         </v-flex>
       </v-layout>
@@ -80,13 +91,16 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
-import Overdue from '@/components/Overdue'
+import PlannerHeader from '@/components/PlannerHeader'
+import PlannerPanel from '@/components/PlannerPanel'
+import OverduePanel from '@/components/OverduePanel'
 import NotesService from '@/services/NotesService'
+
 export default {
   components: {
-    Panel,
-    Overdue
+    PlannerPanel,
+    OverduePanel,
+    PlannerHeader
   },
   data () {
     return {
@@ -147,6 +161,10 @@ export default {
 
 
 <style scoped>
+a {
+  text-decoration: none; 
+  color: black; 
+}
 .mtop-20 {
   margin-top: 20em;
 }

@@ -1,5 +1,6 @@
 <template>
   <div id="root">
+    <week-header/>
     <div class="mt-10" v-if="userId === null">
       <h1> Welcome to e-Planner </h1>
       <br>
@@ -21,8 +22,8 @@
         <v-flex xs8 class='min-w20'>
 
           <div class="elevation-1 height-500">
-            <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">{{d1}} --- {{d1n}}</v-toolbar-title>
+            <v-toolbar dark flat dense color="blue">
+              <v-toolbar-title>{{d1}} --- {{d1n}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
@@ -219,7 +220,7 @@
 
           <div class="elevation-1 height-500">
             <v-toolbar dark color="primary">
-              <v-toolbar-title class="white--text">{{d7}}</v-toolbar-title>
+              <v-toolbar-title>{{d7}}</v-toolbar-title>
             </v-toolbar>
             <v-container grid-list-md text-xs-center style="width:100%"
             class="outer"
@@ -252,29 +253,39 @@
           
         </v-flex>
         <v-flex xs4>
-          <panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
+          <week-panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
             <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
+            <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> TASKS </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
-          </panel>
+            <v-btn class='opt-button' @click="navigateTo({name:'overdue'})"> OVERDUE </v-btn>
+          </week-panel>
           <div class="side-bar ml-5 mtop-20">
-            <h5><br> COMPLETED <br></h5>
-            <v-avatar
-              class="light-green"
-            >
-            <v-icon dark>{{completed}}</v-icon>
-            </v-avatar>
-            <h5><br> TO DO <br></h5>
-            <v-avatar
-              class="orange"
-            >
-            <v-icon dark>{{tasks}}</v-icon>
-            </v-avatar>
-            <h5><br> OVERDUE <br></h5>
-            <v-avatar
-              class="red"
-            >
-            <v-icon dark>{{overdue}}</v-icon>
-            </v-avatar>
+            <a href='/#/completed'>
+              <h5><br> COMPLETED <br></h5>
+              <v-avatar
+                class="light-green"
+              >
+              <v-icon dark>{{completed}}</v-icon>
+              </v-avatar>
+            </a>
+            <a href='/#/planner'>
+              <h5><br> TO DO <br></h5>
+              <v-avatar
+                class="orange"
+              >
+              <v-icon dark>{{tasks}}</v-icon>
+              </v-avatar>
+            </a>
+            <a href='#/overdue'>
+              <div class="link">
+                <h5><br> OVERDUE <br></h5>
+                <v-avatar
+                  class="red"
+                >
+                <v-icon dark>{{overdue}}</v-icon>
+                </v-avatar>
+              </div>
+            </a>
           </div>
         </v-flex>
       </v-layout>
@@ -284,11 +295,13 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
+import WeekPanel from '@/components/WeekPanel'
+import WeekHeader from '@/components/WeekHeader'
 import NotesService from '@/services/NotesService'
 export default {
   components: {
-    Panel
+    WeekPanel,
+    WeekHeader
   },
   data () {
     return {
@@ -391,11 +404,13 @@ export default {
     }
   }
 }
-
 </script>
 
-
 <style scoped>
+a {
+  text-decoration: none; 
+  color: black; 
+}
 .mleft-20 {
   margin-left: 20px;
 }
@@ -410,16 +425,12 @@ export default {
   overflow-x:scroll;
   overflow-y:hidden;
 }
-
 .outer div{
   background-color:;
   float: none;
   height: 90%;
   display: inline-block;
   zoom: 1;
-}
-.m-auto {
-  margin-top:auto;
 }
 .height-500 {
   height: 250px;
@@ -439,32 +450,7 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-.operations {
-  min-width:100px;
-}
-.add-button {
-      font-size:0.875em;
-      display:block;
-      left:-8px;
-      width:100%;
-      min-width:90%;
-}
 .min-w20 {
   min-width:20em;
-}
-.margin-ra {
-  margin-right:2em;
-}
-.margin-la {
-  margin-left:2em;
-}
-.margin-b20 {
-  margin-bottom:20px
-}
-.margin-r20 {
-  margin-right:30px
-}
-.margin-l30{
-  margin-left:30px;
 }
 </style>

@@ -1,10 +1,11 @@
 <template>
   <div class='top-page'> 
+    <page-header/>
     <div id="root">
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
           <div v-if="this.note.overdue === 'overdueTrue'">
-            <overdue :title="note.title" class="mb-4">
+            <overdue-panel :title="note.title" class="mb-4">
               <h3> {{note.title}} </h3>
               <p>Description: {{note.description}}</p>
               <h6>Due Date: {{note.duedate}}</h6>
@@ -16,7 +17,7 @@
                 <p class='completed m-bo'> This task has been completed. </p>
                 <p>Date Completed: {{note.completed}}</p>
               </div>
-            </overdue>
+            </overdue-panel>
           </div>
           <div v-else>
             <panel :title="note.title" class="mb-4">
@@ -47,8 +48,9 @@
 </template>
 
 <script>
+import PageHeader from '@/components/Header.vue'
 import Panel from '@/components/Panel'
-import Overdue from '@/components/Overdue'
+import OverduePanel from '@/components/OverduePanel'
 import NotesService from '@/services/NotesService'
 
 export default {
@@ -69,8 +71,9 @@ export default {
   },
   components: {
     Panel,
-    Overdue,
-    NotesService
+    OverduePanel,
+    NotesService,
+    PageHeader
   },
   methods: {
     navigateTo (route) {
@@ -82,6 +85,7 @@ export default {
       this.note.completed = Date.now()
       this.note.completed = new Date(this.note.completed)
       this.note.completed = (this.note.completed.getMonth() + 1) + '/' + this.note.completed.getDate() + '/' + this.note.completed.getFullYear()
+      this.note.overdue = 'overdueFalse'
       try {
         // send to backend
         await NotesService.put(this.note)
@@ -157,9 +161,6 @@ export default {
 }
 .margin-l30{
   margin-left:30px;
-}
-panel {
-  height: 250px;
 }
 </style>
 
