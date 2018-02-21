@@ -65,31 +65,27 @@ export default {
     PageHeader
   },
   async mounted () {
-    // do a request to the back end for all the notes
-    // when mounted, this.notes will wait for NotesService.index() to retreive data
     if (this.$store.state.user !== null) { this.note.userId = this.$store.state.user.id }
     console.log('note', this.note)
   },
   methods: {
     async create () {
       this.error = null
-      this.note.duedate = new Date(this.note.duedate)
-      this.note.duedate = (this.note.duedate.getMonth() + 1) + '/' + this.note.duedate.getDate() + '/' + this.note.duedate.getFullYear()
+      if (this.note.duedate !== null) {
+        this.note.duedate = new Date(this.note.duedate)
+        this.note.duedate = (this.note.duedate.getMonth() + 1) + '/' + this.note.duedate.getDate() + '/' + this.note.duedate.getFullYear()
+      }
       console.log(this.duedate)
       const allFieldsFilled = Object.keys(this.note).every(key => !!this.note[key])
       if (!allFieldsFilled) {
         this.error = 'Please fill in all the required fields.'
         return
-      // attempts of date format
-      // ----------
       }
       try {
-        // send to backend
         await NotesService.post(this.note)
         this.$router.push({name: 'planner'})
         console.log(this.note)
       } catch (error) {
-        // error.repsonse.data is what is returned by axios, .error is what we defined
         this.error = error.response.data.error
       }
     }
@@ -97,7 +93,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .center {
     margin-left: auto;
@@ -112,5 +107,3 @@ export default {
     background-color:white !important;
 }
 </style>
-
-<!-- vuex will be used for key store related objects -->

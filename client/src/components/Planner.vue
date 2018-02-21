@@ -46,11 +46,11 @@
             </div>
           </div>
           <div v-if="tasks === 0">
-            <h1 class='mtop-3'> Nothing HERE, add new task! </h1>
+            <h1 class='mtop-3'>  </h1>
           </div>
         </v-flex>
         <v-flex xs4>
-          <planner-panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
+          <planner-panel v-if="optBar" title="TASKS" class="side-bar ml-5">
             <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'weekly'})"> WEEKLY </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>

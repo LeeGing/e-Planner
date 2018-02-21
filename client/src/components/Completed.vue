@@ -8,13 +8,16 @@
             <div v-if="note.completed !== 'not completed'">
               <completed-panel :title="note.title" class="mb-4 panel">
                 <h3>{{note.title}}</h3>
-                <p>{{note.description}}</p>
-                <!-- <h6>{{note.duedate}}</h6> -->
+                <p>Description: {{note.description}}</p>
                 <h6>Date Completed: {{note.completed}}</h6>
                 <v-btn class="light-green mtop-1" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
               </completed-panel>
-            </div>  
+            </div>
           </div>
+        </div>
+        <div v-if="completed === 0">
+          <h1 class='mtop-3'> No Completed Tasks </h1>
+          <p> Get to work! </p>
         </div>
       </v-flex>
       <v-flex xs4>
@@ -111,7 +114,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>

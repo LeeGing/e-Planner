@@ -23,6 +23,12 @@ export default {
 </script>
 
 <style>
+h1, h2 {
+  font-weight: normal;
+}
+.mtop-3 {
+  margin-top: 3em;
+}
 .mbot-45 {
   margin-bottom: 45px;
 }

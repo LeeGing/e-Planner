@@ -36,12 +36,13 @@
               </div>  
             </div>
           </div>
-          <div v-if="tasks === 0">
-            <h1 class='mtop-3'> Nothing HERE, add new task! </h1>
+          <div v-if="overdue === 0">
+            <h1 class='mtop-3'> No Overdue Tasks </h1>
+            <p> Keep it up! </p>
           </div>
         </v-flex>
         <v-flex xs4>
-          <overdue-panel v-if="optBar" title="PLANNER" class="side-bar ml-5">
+          <overdue-panel v-if="optBar" title="OVERDUE" class="side-bar ml-5">
             <v-btn class='opt-button' @click="navigateTo({name:'planner-create'})"> ADD TASK </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> TASKS </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'weekly'})"> WEEKLY </v-btn>
@@ -105,8 +106,6 @@ export default {
     }
   },
   async mounted () {
-    // do a request to the back end for all the notes
-    // when mounted, this.notes will wait for NotesService.index() to retreive data
     this.notes = (await NotesService.index()).data
     this.notes.sort((a, b) => new Date(a.duedate) - new Date(b.duedate))
     if (this.$store.state.user !== null) { this.userId = this.$store.state.user.id }
@@ -120,7 +119,6 @@ export default {
     console.log('tasks', this.tasks)
     console.log('overdue', this.overdue)
     console.log('this.dateToday', this.dateToday)
-    // overdue array of ids
     console.log(this.overdueArray)
   },
   methods: {
@@ -133,7 +131,6 @@ export default {
           if (task.completed === 'not completed') {
             this.tasks += 1
             if (new Date(task.duedate) < this.dateToday) {
-              // push the id of the task into an array, if the id === one of the ids in the overdue array, then we render the red panel.
               task.overdue = 'overdueTrue'
               console.log('eyeyeyeye', task)
               this.overdue += 1

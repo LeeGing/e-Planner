@@ -1,7 +1,7 @@
 <template>
   <div id="root">
     <week-header/>
-    <div class="mt-10" v-if="userId === null">
+    <div class="mtop-10e" v-if="userId === null">
       <h1> Welcome to e-Planner </h1>
       <br>
       <h6> Please log in or sign up to proceed. </h6>
@@ -19,7 +19,7 @@
     </div>
     <div v-else>
       <v-layout class='center'>
-        <v-flex xs8 class='min-w20'>
+        <v-flex xs8 class='min-w20e'>
 
           <div class="elevation-2 mb-4 height-500">
             <v-toolbar dark flat dense color="blue">
@@ -35,7 +35,7 @@
                   <div v-if="note.duedate == d1">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="mright-30 mleft-20 mtop-5">
+                        <div class="mright-30 mleft-20 mtop-10">
                           <h3>{{note.title}}</h3>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
@@ -43,6 +43,9 @@
                       </div>
                     </div>  
                   </div>
+                </div>
+                <div v-if="d1n === 0" class="mtop-4e">
+                  <h5> NO TASKS </h5>
                 </div>
               </v-layout>
             </v-container>
@@ -61,7 +64,7 @@
                   <div v-if="note.duedate == d2">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="mright-30 mleft-20 mtop-5">
+                        <div class="mright-30 mleft-20 mtop-10">
                           <h3>{{note.title}}</h3>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
@@ -69,6 +72,9 @@
                       </div>
                     </div>  
                   </div>
+                </div>
+                <div v-if="d2n === 0" class="mtop-4e">
+                  <h5> NO TASKS </h5>
                 </div>
               </v-layout>
             </v-container>
@@ -87,7 +93,7 @@
                   <div v-if="note.duedate == d3">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="mright-30 mleft-20 mtop-5">
+                        <div class="mright-30 mleft-20 mtop-10">
                           <h3>{{note.title}}</h3>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
@@ -95,6 +101,9 @@
                       </div>
                     </div>  
                   </div>
+                </div>
+                <div v-if="d3n === 0" class="mtop-4e">
+                  <h5> NO TASKS </h5>
                 </div>
               </v-layout>
             </v-container>
@@ -113,7 +122,7 @@
                   <div v-if="note.duedate == d4">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="mright-30 mleft-20 mtop-5">
+                        <div class="mright-30 mleft-20 mtop-10">
                           <h3>{{note.title}}</h3>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
@@ -121,6 +130,9 @@
                       </div>
                     </div>  
                   </div>
+                </div>
+                <div v-if="d4n === 0" class="mtop-4e">
+                  <h5> NO TASKS </h5>
                 </div>
               </v-layout>
             </v-container>
@@ -139,7 +151,7 @@
                   <div v-if="note.duedate == d5">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="mright-30 mleft-20 mtop-5">
+                        <div class="mright-30 mleft-20 mtop-10">
                           <h3>{{note.title}}</h3>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
@@ -147,6 +159,9 @@
                       </div>
                     </div>  
                   </div>
+                </div>
+                <div v-if="d5n === 0" class="mtop-4e">
+                  <h5> NO TASKS </h5>
                 </div>
               </v-layout>
             </v-container>
@@ -165,7 +180,7 @@
                   <div v-if="note.duedate == d6">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="mright-30 mleft-20 mtop-5">
+                        <div class="mright-30 mleft-20 mtop-10">
                           <h3>{{note.title}}</h3>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
@@ -173,6 +188,9 @@
                       </div>
                     </div>  
                   </div>
+                </div>
+                <div v-if="d6n === 0" class="mtop-4e">
+                  <h5> NO TASKS </h5>
                 </div>
               </v-layout>
             </v-container>
@@ -191,7 +209,7 @@
                   <div v-if="note.duedate == d7">
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
-                        <div class="mright-30 mleft-20 mtop-5">
+                        <div class="mright-30 mleft-20 mtop-10">
                           <h3>{{note.title}}</h3>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
@@ -199,6 +217,9 @@
                       </div>
                     </div>  
                   </div>
+                </div>
+                <div v-if="d7n === 0" class="mtop-4e">
+                  <h5> NO TASKS </h5>
                 </div>
               </v-layout>
             </v-container>
@@ -213,7 +234,7 @@
             <v-btn class='opt-button' @click="navigateTo({name:'planner-completed'})"> COMPLETED </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'overdue'})"> OVERDUE </v-btn>
           </week-panel>
-          <div class="side-bar ml-5 mtop-20">
+          <div class="side-bar ml-5 mtop-20e">
             <a href='/#/completed'>
               <h5><br> COMPLETED <br></h5>
               <v-avatar
@@ -398,7 +419,10 @@ export default {
 </script>
 
 <style scoped>
-.mtop-5 {
+.mtop-4e {
+  margin-top: 4em;
+}
+.mtop-10 {
   margin-top:10px;
 }
 .mbot-20 {
@@ -435,19 +459,19 @@ a {
 .border-1 {
   border: 1px solid black;
 }
-.mtop-20 {
+.mtop-20e {
   margin-top: 20em;
 }
 .mtop-3 {
   margin-top: 3em;
 }
-.mt-10 {
+.mtop-10e {
   margin-top: 10em;
 }
 h1, h2 {
   font-weight: normal;
 }
-.min-w20 {
+.min-w20e {
   min-width:20em;
 }
 </style>

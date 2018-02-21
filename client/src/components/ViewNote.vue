@@ -5,16 +5,16 @@
       <v-layout class='center'>
         <v-flex xs8 class='min-w20'>
           <div v-if="this.note.overdue === 'overdueTrue'">
-            <overdue-panel :title="note.title" class="mb-4">
+            <overdue-panel :title="note.title" class="panel-250 mb-4">
               <h3> {{note.title}} </h3>
               <p>Description: {{note.description}}</p>
               <h6>Due Date: {{note.duedate}}</h6>
-              <br>
               <div v-if="note.completed === 'not completed'"> 
+                <br>
                 <v-btn  class="red" @click="completedNote" dark>COMPLETED</v-btn>
               </div>
                <div v-if="note.completed !== 'not completed'"> 
-                <p class='completed m-bo'> This task has been completed. </p>
+                <br>
                 <p>Date Completed: {{note.completed}}</p>
               </div>
             </overdue-panel>
@@ -56,7 +56,8 @@ import NotesService from '@/services/NotesService'
 export default {
   data () {
     return {
-      note: {}
+      note: {},
+      dateToday: null
     }
   },
   async mounted () {
@@ -65,6 +66,8 @@ export default {
     // this vaulue also changes
     const noteId = this.$store.state.route.params.noteId
     this.note = (await NotesService.show(noteId)).data
+    this.dateToday = new Date()
+    this.dateToday = this.dateToday.setHours(0, 0, 0, 0)
     console.log('completedOnthis', this.completedOn)
     this.overdueCheck()
     console.log()
@@ -108,7 +111,7 @@ export default {
       }
     },
     overdueCheck () {
-      if (new Date(this.note.duedate) < new Date()) {
+      if (new Date(this.note.duedate) < this.dateToday) {
         this.note.overdue = 'overdueTrue'
         console.log('overdue', this.note)
       }
@@ -118,7 +121,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .panel-250 {
   height: 250px;
@@ -166,5 +168,3 @@ export default {
   margin-left:30px;
 }
 </style>
-
-<!-- vuex will be used for key store related objects -->
