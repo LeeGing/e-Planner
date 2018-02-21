@@ -48,6 +48,10 @@
           <div v-if="tasks === 0">
             <h1 class='mtop-3'>  </h1>
           </div>
+          <div v-if="tasks === 0">
+            <h1 class='mtop-3'> No Tasks </h1>
+            <p> Find something to do! </p>
+          </div>
         </v-flex>
         <v-flex xs4>
           <planner-panel v-if="optBar" title="TASKS" class="side-bar ml-5">

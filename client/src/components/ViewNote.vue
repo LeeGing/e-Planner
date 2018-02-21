@@ -9,7 +9,7 @@
               <h3> {{note.title}} </h3>
               <p>Description: {{note.description}}</p>
               <h6>Due Date: {{note.duedate}}</h6>
-              <div v-if="note.completed === 'not completed'"> 
+              <div v-if="note.completed === 'not completed'">
                 <br>
                 <v-btn  class="red" @click="completedNote" dark>COMPLETED</v-btn>
               </div>
@@ -37,7 +37,7 @@
         </v-flex>
         <v-flex xs4>
           <panel title="TASK" class="side-bar ml-5">
-            <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> PLANNER </v-btn>
+            <v-btn class='opt-button' @click="navigateTo({name:'planner'})"> TASKS </v-btn>
             <v-btn class='opt-button' @click="navigateTo({name:'planner-edit'})"> EDIT TASK </v-btn>
             <v-btn class='opt-button' @click="deleteNote"> DELETE TASK </v-btn>
           </panel>
