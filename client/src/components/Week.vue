@@ -36,7 +36,7 @@
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
                         <div class="mright-30 mleft-20 mtop-10">
-                          <h3>{{note.title}}</h3>
+                          <h4>{{note.title}}</h4>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>
@@ -65,7 +65,7 @@
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
                         <div class="mright-30 mleft-20 mtop-10">
-                          <h3>{{note.title}}</h3>
+                          <h4>{{note.title}}</h4>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>
@@ -94,7 +94,7 @@
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
                         <div class="mright-30 mleft-20 mtop-10">
-                          <h3>{{note.title}}</h3>
+                          <h4>{{note.title}}</h4>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>
@@ -123,7 +123,7 @@
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
                         <div class="mright-30 mleft-20 mtop-10">
-                          <h3>{{note.title}}</h3>
+                          <h4>{{note.title}}</h4>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>
@@ -152,7 +152,7 @@
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
                         <div class="mright-30 mleft-20 mtop-10">
-                          <h3>{{note.title}}</h3>
+                          <h4>{{note.title}}</h4>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>
@@ -181,7 +181,7 @@
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
                         <div class="mright-30 mleft-20 mtop-10">
-                          <h3>{{note.title}}</h3>
+                          <h4>{{note.title}}</h4>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>
@@ -210,7 +210,7 @@
                     <div v-if="userId === note.userId">
                       <div v-if="note.completed === 'not completed'">
                         <div class="mright-30 mleft-20 mtop-10">
-                          <h3>{{note.title}}</h3>
+                          <h4>{{note.title}}</h4>
                           <h6>Due: {{note.duedate}}</h6>
                           <v-btn class="blue" @click="navigateTo({name: 'note', params: { noteId: note.id }})" dark>VIEW</v-btn>
                         </div>

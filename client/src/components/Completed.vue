@@ -16,7 +16,7 @@
           </div>
         </div>
         <div v-if="completed === 0">
-          <h1 class='mtop-3'> No Completed Tasks </h1>
+          <h1 class='mtop-3'> NO COMPLETED TASKS </h1>
           <p> Get to work! </p>
         </div>
       </v-flex>

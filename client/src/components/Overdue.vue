@@ -37,7 +37,7 @@
             </div>
           </div>
           <div v-if="overdue === 0">
-            <h1 class='mtop-3'> No Overdue Tasks </h1>
+            <h1 class='mtop-3'> NO OVERDUE TASKS </h1>
             <p> Keep it up! </p>
           </div>
         </v-flex>
