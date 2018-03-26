@@ -5,5 +5,8 @@ export default {
   // this AuthenticationService.js will export an object with a register method
   register (credentials) {
     return Api().post('register', credentials)
+  },
+  login (credentials) {
+    return Api().post('login', credentials)
   }
 }
